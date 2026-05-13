@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="preload" as="image" href="/assets/vartai.webp" fetchpriority="high" />
+  <meta name="theme-color" content="#0E0E0C" />
+  <title>Tvorteka — tvorų ir vartų gamyba bei montavimas | Kaunas</title>
+  <link rel="canonical" href="https://tvorteka.lt/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tvorteka" />
+  <meta property="og:title" content="Tvorteka — tvorų ir vartų gamyba bei montavimas | Kaunas" />
+  <meta property="og:description" content="Tvorteka gamina ir montuoja skardinės tvoras Kaune. Žaliuzi, eglutės, rombas, Plank profiliai. 12+ metų patirtis, 340+ projektų, 5 metų garantija." />
+  <meta property="og:url" content="https://tvorteka.lt/" />
+  <meta property="og:image" content="https://tvorteka.lt/assets/tvorteka_hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="lt_LT" />
+  <meta name="description" content="Tvorteka gamina ir montuoja skardinės tvoras Kaune. Žaliuzi, eglutės, rombas, Plank profiliai. 12+ metų patirtis, 340+ projektų, 5 metų garantija." />
+
+  <link rel="preload" href="assets/fonts/Geist-Latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/Fraunces-Latin.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Critical above-fold CSS: inlined to eliminate render-blocking -->
+  <style>
+    /* ── Reset ── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
+    body{min-height:100vh;line-height:1.5;overflow-x:hidden}
+    img,picture,video,canvas,svg{display:block;max-width:100%;height:auto}
+    input,button,textarea,select{font:inherit;color:inherit}
+    button{background:none;border:none;cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    ul,ol{list-style:none}
+    h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit}
+
+    /* ── Design tokens ── */
+    :root{
+      --color-paper:#F7F6F2;--color-paper-2:#EFEDE7;--color-ash-50:#E8E6E1;
+      --color-ash-100:#D4D2CC;--color-ash-200:#B5B2AB;--color-ash-400:#6B6963;
+      --color-ash-600:#3A3935;--color-ink:#0E0E0C;--color-ink-soft:#1A1A17;
+      --font-display:"Fraunces","Times New Roman",Georgia,serif;
+      --font-sans:"Geist","Helvetica Neue",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+      --font-mono:"Geist Mono","JetBrains Mono","Courier New",ui-monospace,monospace;
+      --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+      --ease-out-quart:cubic-bezier(0.25,1,0.5,1);
+      --ease-smooth:cubic-bezier(0.4,0,0.2,1);
+      --container-max:1440px;--pad-x:1.5rem;--nav-h:80px;
+    }
+    @media(min-width:768px){:root{--pad-x:2.5rem}}
+    @media(min-width:1280px){:root{--pad-x:4rem}}
+
+    /* ── Body base ── */
+    body{font-family:var(--font-sans);color:var(--color-ink);background-color:#fff;
+      font-feature-settings:"ss01","ss02","cv01","cv11";letter-spacing:-0.01em;font-size:16px}
+    body.menu-open{overflow:hidden}
+
+    /* ── Utilities ── */
+    .container-x{width:100%;max-width:var(--container-max);margin-inline:auto;padding-inline:var(--pad-x)}
+    .text-eyebrow{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.18em;
+      text-transform:uppercase;font-weight:500;color:var(--color-ash-400)}
+
+    /* ── Animations ── */
+    @keyframes fade-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes hero-zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+    .reveal-load{opacity:0;animation:fade-up 1.2s var(--ease-out-expo) forwards}
+    .reveal-1{animation-delay:.10s}.reveal-2{animation-delay:.25s}.reveal-3{animation-delay:.40s}
+    .reveal-4{animation-delay:.55s}.reveal-5{animation-delay:.70s}.reveal-6{animation-delay:.85s}
+
+    /* ── Navbar ── */
+    .navbar{position:fixed;inset:0 0 auto 0;z-index:100;
+      transition:background-color .5s var(--ease-out-quart),backdrop-filter .5s var(--ease-out-quart);
+      --nav-fg:var(--color-paper);--nav-fg-soft:rgba(247,246,242,.7);
+      --nav-bg-pill:rgba(0,0,0,.25);--nav-bd-pill:rgba(255,255,255,.15);
+      --nav-cta-bg:var(--color-paper);--nav-cta-fg:var(--color-ink)}
+    .navbar[data-theme="light"]{
+      --nav-fg:var(--color-ink);--nav-fg-soft:var(--color-ash-400);
+      --nav-bg-pill:rgba(14,14,12,.04);--nav-bd-pill:var(--color-ash-50);
+      --nav-cta-bg:var(--color-ink);--nav-cta-fg:var(--color-paper)}
+    .navbar.is-scrolled{backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%)}
+    .navbar.is-scrolled[data-theme="dark"]{background-color:rgba(14,14,12,.55)}
+    .navbar.is-scrolled[data-theme="light"]{background-color:rgba(247,246,242,.85);border-bottom:1px solid var(--color-ash-50)}
+    .navbar-inner{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0;gap:1.5rem}
+    .navbar-logo{display:flex;align-items:center;gap:.5rem;color:var(--nav-fg);
+      font-family:var(--font-display);font-size:1.25rem;font-weight:500;
+      letter-spacing:-.025em;transition:color .4s var(--ease-out-quart);flex-shrink:0}
+    .navbar-logo svg{width:24px;height:24px}
+    .navbar-pill{display:none;padding:.375rem;gap:.125rem;background-color:var(--nav-bg-pill);
+      border:1px solid var(--nav-bd-pill);border-radius:999px;
+      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    @media(min-width:1024px){.navbar-pill{display:flex}}
+    .navbar-pill-link{display:inline-block;padding:.5rem 1.125rem;font-size:.85rem;
+      color:var(--nav-fg-soft);border-radius:999px;
+      transition:color .3s var(--ease-out-quart),background-color .3s var(--ease-out-quart);
+      letter-spacing:-.005em}
+    .navbar-pill-link:hover{color:var(--nav-fg)}
+    .navbar-pill-link.is-active{background-color:var(--nav-fg);color:var(--nav-cta-fg)}
+    .navbar-actions{display:flex;align-items:center;gap:1rem;flex-shrink:0}
+    .navbar-phone{display:none;align-items:center;gap:.5rem;font-size:.85rem;
+      color:var(--nav-fg-soft);transition:color .3s var(--ease-out-quart)}
+    .navbar-phone:hover{color:var(--nav-fg)}
+    @media(min-width:768px){.navbar-phone{display:flex}}
+    .navbar-cta{display:none;align-items:center;gap:.5rem;
+      background-color:var(--nav-cta-bg);color:var(--nav-cta-fg);
+      padding:.7rem 1.25rem;border-radius:999px;font-size:.85rem;font-weight:500;
+      transition:all .4s var(--ease-out-quart);letter-spacing:-.005em}
+    @media(min-width:768px){.navbar-cta{display:inline-flex}}
+    .navbar-burger{display:block;position:relative;width:32px;height:32px;
+      padding:0;z-index:102;background:transparent;border:none;cursor:pointer}
+    .navbar-burger span{display:block;position:absolute;left:5px;width:22px;height:1.5px;
+      background-color:var(--nav-fg);transform-origin:center;
+      transition:top .4s var(--ease-out-expo),transform .4s var(--ease-out-expo) .1s,
+        opacity .2s var(--ease-out-quart),background-color .4s var(--ease-out-quart)}
+    .navbar-burger span:nth-child(1){top:10px}
+    .navbar-burger span:nth-child(2){top:50%;margin-top:-.75px}
+    .navbar-burger span:nth-child(3){top:21px}
+    @media(min-width:1024px){.navbar-burger{display:none}}
+    .navbar-mobile{position:fixed;inset:0;background-color:var(--color-paper);z-index:99;
+      opacity:0;visibility:hidden;transform:translateY(-12px);
+      transition:opacity .5s var(--ease-out-quart),transform .5s var(--ease-out-quart),visibility 0s linear .5s;
+      display:flex;flex-direction:column;justify-content:space-between;padding:6.5rem 1.5rem 2.5rem}
+    .navbar-mobile.is-open{opacity:1;visibility:visible;transform:translateY(0);
+      transition:opacity .5s var(--ease-out-quart),transform .5s var(--ease-out-quart),visibility 0s linear 0s}
+
+    /* ── Hero ── */
+    .hero{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;
+      color:var(--color-paper);isolation:isolate}
+    .hero-bg{position:absolute;inset:0;z-index:-1}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;animation:hero-zoom 12s var(--ease-out-quart) forwards}
+    .hero-bg-overlay{position:absolute;inset:0;
+      background:linear-gradient(100deg,rgba(14,14,12,.78) 0%,rgba(14,14,12,.55) 35%,rgba(14,14,12,.25) 65%,rgba(14,14,12,.15) 100%)}
+    .hero-bg-vignette{position:absolute;inset:0;
+      background:radial-gradient(ellipse 90% 70% at 50% 40%,transparent 0%,rgba(14,14,12,.35) 100%),
+        linear-gradient(to bottom,transparent 60%,rgba(14,14,12,.7) 100%)}
+    .hero-container{position:relative;z-index:1;min-height:inherit;display:grid;
+      grid-template-rows:1fr auto;padding-top:7rem;padding-bottom:2.5rem;gap:2rem}
+    .hero-content{align-self:center;max-width:920px}
+    .hero-eyebrow{color:rgba(247,246,242,.7);margin-bottom:1.25rem}
+    .hero-title{font-family:var(--font-display);font-weight:300;
+      font-size:clamp(2.5rem,7vw,6rem);line-height:.98;letter-spacing:-.035em;
+      color:var(--color-paper);font-variation-settings:"opsz" 144,"SOFT" 30;text-wrap:balance}
+    .hero-line{display:block}
+    .hero-line em{font-style:italic;color:rgba(247,246,242,.85);font-variation-settings:"opsz" 144,"SOFT" 100}
+    .hero-subtitle{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.55;
+      color:rgba(247,246,242,.75);max-width:44ch;margin-top:1.75rem}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.625rem;margin-top:2.5rem}
+    .hero-btn{display:inline-flex;align-items:center;gap:.625rem;padding:1rem 1.5rem 1rem 1.75rem;
+      font-size:.9rem;font-weight:500;letter-spacing:-.005em;border-radius:999px;
+      transition:all .4s var(--ease-out-quart);white-space:nowrap}
+    .hero-btn-primary{background-color:var(--color-paper);color:var(--color-ink);border:1px solid var(--color-paper)}
+    .hero-btn-ghost{background-color:rgba(255,255,255,.08);color:var(--color-paper);
+      border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  </style>
+
+  <!-- Full CSS loaded non-blocking -->
+  <link rel="preload" href="/css/tokens.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+  </noscript>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Pagrindinis", "item": "https://tvorteka.lt/"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FenceContractor",
+    "name": "Tvorteka",
+    "url": "https://tvorteka.lt",
+    "telephone": "+37066256657",
+    "email": "info@tvorteka.lt",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kaunas",
+      "addressCountry": "LT"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Lietuva"
+    },
+    "sameAs": [],
+    "priceRange": "€€"
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <header class="navbar" data-theme="dark">
+    <div class="container-x">
+      <nav class="navbar-inner" aria-label="Pagrindinis meniu">
+        <a href="/" class="navbar-logo" aria-label="Tvorteka — į pradžią">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 4v16M21 4v16M7 4v16M11 4v16M15 4v16M19 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M3 9h18M3 15h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>Tvorteka</span>
+        </a>
+
+        <ul class="navbar-pill" role="menubar">
+          <li role="none"><a href="/" class="navbar-pill-link is-active" role="menuitem">Pagrindinis</a></li>
+          <li role="none"><a href="/produktai/" class="navbar-pill-link" role="menuitem">Produktai</a></li>
+          <li role="none"><a href="/skaiciuokle/" class="navbar-pill-link" role="menuitem">Skaičiuoklė</a></li>
+          <li role="none"><a href="/veikla/" class="navbar-pill-link" role="menuitem">Veikla</a></li>
+          <li role="none"><a href="/apie/" class="navbar-pill-link" role="menuitem">Apie mus</a></li>
+          <li role="none"><a href="/kontaktai/" class="navbar-pill-link" role="menuitem">Kontaktai</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+          <a href="tel:+37066256657" class="navbar-phone" aria-label="Skambinti +370 662 56657">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M11.7 9.5c-.7 0-1.3-.1-1.9-.3-.2-.1-.5 0-.7.2L8 10.5C6.4 9.7 5 8.4 4.2 6.7l1.1-1c.2-.2.2-.4.2-.7-.2-.6-.3-1.2-.3-1.9 0-.4-.3-.7-.7-.7H2.7c-.4 0-.7.3-.7.7C2 9.4 4.6 12 8.9 12c.4 0 .7-.3.7-.7v-1.7c0-.4-.4-.7-.7-.7l2.8.6z" stroke="currentColor" stroke-width="1.4"/>
+            </svg>
+            <span>+370 662 56657</span>
+          </a>
+
+          <a href="#kontaktai" class="navbar-cta">
+            <span>Susisiekti</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7h8m0 0L7 3m4 4L7 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <!-- BURGER (3 spans → animates to single X) -->
+          <button class="navbar-burger" id="burger" aria-label="Atidaryti meniu" aria-expanded="false" aria-controls="mobileMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MOBILE MENU OVERLAY (sibling of navbar — NO separate close button)
+       ============================================================ -->
+  <div class="navbar-mobile" id="mobileMenu" role="dialog" aria-label="Mobilus meniu">
+    <ul class="navbar-mobile-list">
+      <li><a href="/">Pagrindinis</a></li>
+      <li><a href="/produktai/">Produktai</a></li>
+      <li><a href="/skaiciuokle/">Skaičiuoklė</a></li>
+      <li><a href="/veikla/">Veikla</a></li>
+      <li><a href="/apie/">Apie mus</a></li>
+      <li><a href="/kontaktai/">Kontaktai</a></li>
+    </ul>
+    <div class="navbar-mobile-foot">
+      <a href="tel:+37066256657">+370 662 56657</a>
+      <a href="mailto:info@tvorteka.lt">info@tvorteka.lt</a>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       1. HERO
+       ============================================================ -->
+  <section class="hero" data-nav-theme="dark">
+    <div class="hero-bg">
+      <img src="assets/tvorteka_hero.webp" alt="" fetchpriority="high" decoding="async" />
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-bg-vignette"></div>
+    </div>
+
+    <div class="container-x hero-container">
+      <div class="hero-content">
+        <p class="text-eyebrow hero-eyebrow reveal-load reveal-1">TVORTEKA — TVORŲ SPRENDIMAI</p>
+
+        <h1 class="hero-title">
+          <span class="hero-line reveal-load reveal-2">Dizainas, kokybė</span>
+          <span class="hero-line reveal-load reveal-3"><em>ir ilgaamžiškumas</em></span>
+          <span class="hero-line reveal-load reveal-4">viename</span>
+        </h1>
+
+        <p class="hero-subtitle reveal-load reveal-5">
+          Gaminame ir montuojame premium klasės skardines tvoras, vartus bei automatikos sprendimus visoje Lietuvoje. Nuo idėjos iki paskutinio sąvaržaus.
+        </p>
+
+        <div class="hero-actions reveal-load reveal-6">
+          <a href="/produktai/" class="hero-btn hero-btn-primary">
+            <span>Peržiūrėti produktus</span>
+            <svg class="hero-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10m0 0L8 3m5 5L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/skaiciuokle/" class="hero-btn hero-btn-ghost">
+            <span>Skaičiuoklė</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-foot reveal-load reveal-6">
+        <dl class="hero-stats">
+          <div>
+            <dt>Patirties metai</dt>
+            <dd>12+</dd>
+          </div>
+          <span class="hero-stats-sep" aria-hidden="true"></span>
+          <div>
+            <dt>Įgyvendintų projektų</dt>
+            <dd>340+</dd>
+          </div>
+          <span class="hero-stats-sep" aria-hidden="true"></span>
+          <div>
+            <dt>Klientų pasitenkinimas</dt>
+            <dd>100%</dd>
+          </div>
+        </dl>
+
+        <a href="#partneriai" class="hero-scroll">
+          <span>Slinkti žemyn</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 2v10m0 0L3 8m4 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       2. PARTNERS — infinite marquee (NEVER pauses)
+       ============================================================ -->
+  <section class="partners" id="partneriai" data-nav-theme="light">
+    <div class="container-x partners-head">
+      <p class="text-eyebrow">PARTNERIAI IR TIEKĖJAI</p>
+    </div>
+    <div class="partners-marquee" aria-hidden="true">
+  <div class="partners-track">
+
+    <!-- PIRMAS RINKINYS -->
+    <div class="partners-set">
+      <div class="partner-logo"><img src="assets/partnerlogos/bauenLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+      <div class="partner-logo"><img src="assets/partnerlogos/diktumLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+      <div class="partner-logo"><img src="assets/partnerlogos/lemoraLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+      <div class="partner-logo"><img src="assets/partnerlogos/statybetaLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+      <div class="partner-logo"><img src="assets/partnerlogos/strabasLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+    </div>
+
+    <!-- ANTRAS RINKINYS — TIKSLI KOPIJA, kad ciklas būtų sklandus -->
+    <div class="partners-set">
+      <div class="partner-logo"><img src="assets/partnerlogos/bauenLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+      <div class="partner-logo"><img src="assets/partnerlogos/diktumLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+      <div class="partner-logo"><img src="assets/partnerlogos/lemoraLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+      <div class="partner-logo"><img src="assets/partnerlogos/statybetaLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+      <div class="partner-logo"><img src="assets/partnerlogos/strabasLogo.webp" alt="" loading="lazy" decoding="async" /></div>
+    </div>
+
+  </div>
+</div>
+  </section>
+
+
+  <!-- ============================================================
+       3. SERVICES (HP3) — sticky heading + cards
+       ============================================================ -->
+  <section class="services" id="veikla" data-nav-theme="light">
+    <div class="container-x">
+      <div class="services-grid">
+        <div class="services-head">
+          <p class="text-eyebrow">VEIKLOS KRYPTYS</p>
+          <h2 class="section-title services-title">Pilnas tvorų sprendimas — <em>nuo gamybos iki montavimo.</em></h2>
+        </div>
+
+        <div class="services-list">
+          <article class="service-card reveal-scroll" data-stagger="1">
+            <div class="service-card-head">
+              <span class="service-card-number">01</span>
+              <h3 class="service-card-title">Tvorų gamyba</h3>
+            </div>
+            <p class="service-card-desc">Skardinės tvoros: žaliuzi, eglutė, rombo formos profiliai. Skirtingi tankumai ir spalvos pagal poreikį.</p>
+            <a href="/produktai/" class="service-card-link">
+              <span>Plačiau</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 9l6-6m0 0H4m5 0v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+
+          <article class="service-card reveal-scroll" data-stagger="2">
+            <div class="service-card-head">
+              <span class="service-card-number">02</span>
+              <h3 class="service-card-title">Vartų gamyba</h3>
+            </div>
+            <p class="service-card-desc">Stumdomi, varstomi ir pakeliami vartai. Pilnai derinami pagal tvoros stilių.</p>
+            <a href="#kontaktai" class="service-card-link">
+              <span>Plačiau</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 9l6-6m0 0H4m5 0v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+
+          <article class="service-card reveal-scroll" data-stagger="3">
+            <div class="service-card-head">
+              <span class="service-card-number">03</span>
+              <h3 class="service-card-title">Profesionalus montavimas</h3>
+            </div>
+            <p class="service-card-desc">Tvirti pamatai, tikslus statymas. Garantuojame stabilumą ir geometrinį tikslumą.</p>
+            <a href="#kontaktai" class="service-card-link">
+              <span>Plačiau</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 9l6-6m0 0H4m5 0v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+
+          <article class="service-card reveal-scroll" data-stagger="4">
+            <div class="service-card-head">
+              <span class="service-card-number">04</span>
+              <h3 class="service-card-title">Vartų automatika</h3>
+            </div>
+            <p class="service-card-desc">CAME, Nice, BFT sistemos. Nuotolinis valdymas, integracija su namų automatika.</p>
+            <a href="#kontaktai" class="service-card-link">
+              <span>Plačiau</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 9l6-6m0 0H4m5 0v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       4. WHY CHOOSE US (HP4)
+       ============================================================ -->
+  <section class="why" id="apie" data-nav-theme="light">
+    <div class="container-xx">
+      <div class="why-card">
+        <div class="why-grid">
+          <div class="why-left">
+            <div>
+              <p class="text-eyebrow why-eyebrow">KODĖL TVORTEKA</p>
+              <h2 class="section-title why-title" style="color: var(--color-paper);">Patikimumas, <em>kuris matomas kasdien.</em></h2>
+              <p class="why-subtitle">Daugiau nei 12 metų statome ilgaamžes tvoras. Gaminame patys — kontroliuojame kiekvieną detalę nuo metalo iki spalvos.</p>
+            </div>
+
+            <div class="why-image">
+              <img src="assets/premium_picture.webp" alt="Premium tvorų kokybė — Tvorteka" loading="lazy" decoding="async" />
+              <span class="why-image-tag">PREMIUM SERIJA</span>
+            </div>
+          </div>
+
+          <div class="why-items">
+            <div class="why-item reveal-scroll" data-stagger="1">
+              <span class="why-item-num">01</span>
+              <div class="why-item-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 2L3 5v5c0 4 3 7 7 8 4-1 7-4 7-8V5l-7-3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="why-item-title">Sava gamyba</h3>
+              <p class="why-item-desc">Visa produkcija gaminama Lietuvoje. Trumpi terminai ir tiesioginė kokybės kontrolė.</p>
+            </div>
+
+            <div class="why-item reveal-scroll" data-stagger="2">
+              <span class="why-item-num">02</span>
+              <div class="why-item-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M3 10l3 3 7-7M11 13l3 3 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="why-item-title">Garantija ir aptarnavimas</h3>
+              <p class="why-item-desc">Iki 5 metų gamintojo garantija. Konsultacijos visą gyvenimo ciklą.</p>
+            </div>
+
+            <div class="why-item reveal-scroll" data-stagger="3">
+              <span class="why-item-num">03</span>
+              <div class="why-item-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 2v8m0 0l3-3m-3 3L7 7m3 11a8 8 0 100-16 8 8 0 000 16z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="why-item-title">Punktualumas</h3>
+              <p class="why-item-desc">Laikomės terminų. Projekto eigą matote realiu laiku — be siurprizų.</p>
+            </div>
+
+            <div class="why-item reveal-scroll" data-stagger="4">
+              <span class="why-item-num">04</span>
+              <div class="why-item-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 17V7l5-4 5 4v10M3 17h14M9 11h2v6H9z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="why-item-title">Premium medžiagos</h3>
+              <p class="why-item-desc">Aukščiausios klasės plieno skarda, dengta poliesteriu. RAL paletės pasirinkimas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       5. PROCESS (HP5)
+       ============================================================ -->
+  <section class="process" data-nav-theme="light">
+    <div class="container-x">
+      <div class="process-head">
+        <p class="text-eyebrow">PROCESAS</p>
+        <h2 class="section-title process-title">Trys aiškūs žingsniai. <em>Nuo pirmojo skambučio iki tvoros.</em></h2>
+        <p class="process-subtitle">Skaidrus procesas, fiksuoti terminai ir nuolatinė komunikacija. Jūs žinote, kas vyksta — visada.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-line"><div class="process-line-fill"></div></div>
+
+        <div class="process-step reveal-scroll" data-stagger="1">
+          <div class="process-step-marker">01</div>
+          <h3 class="process-step-title">Konsultacija ir matavimai</h3>
+          <p class="process-step-desc">Aptariame tikslus, atvykstame į objektą, atliekame tikslų matavimą. Pateikiame skaidrią sąmatą.</p>
+        </div>
+
+        <div class="process-step reveal-scroll" data-stagger="2">
+          <div class="process-step-marker">02</div>
+          <h3 class="process-step-title">Gamyba</h3>
+          <p class="process-step-desc">Pagaminame tvorą savo gamykloje pagal Jūsų projektą. Vidutiniškai per 7–14 dienų.</p>
+        </div>
+
+        <div class="process-step reveal-scroll" data-stagger="3">
+          <div class="process-step-marker">03</div>
+          <h3 class="process-step-title">Montavimas ir perdavimas</h3>
+          <p class="process-step-desc">Profesionalus sumontavimas, geometrinis tikslumas, perdavimas pagal aktą. Garantija nuo 2 iki 5 metų.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       6. FENCE TYPES — exact 3 cards on desktop, side arrows
+       ============================================================ -->
+  <section class="fences" data-nav-theme="light">
+    <div class="container-x">
+      <div class="fences-head">
+        <p class="text-eyebrow">PRODUKTŲ ASORTIMENTAS</p>
+        <div class="fences-head-grid">
+          <h2 class="section-title">Profiliai, pritaikyti <em>Jūsų sklypui.</em></h2>
+          <p class="fences-subtitle">Kokybiškas tvoras iš skirtingų profilių — pasirinkite tinkamiausią Jūsų sklypui.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- carousel section: arrows are absolute, vertically centered on cards -->
+    <div class="fences-section">
+      <button class="fences-arrow fences-arrow-prev is-hidden" aria-label="Ankstesnis">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M12.5 5l-5 5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="container-x">
+        <div class="fences-viewport">
+          <div class="fences-track">
+
+            <a href="/produktai/rombas-60-120-vidutinis/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/rombas_6x12_vidutinis.webp" alt="Rombas 60×120" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Rombas 60×120 vidutinis</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Rombo tipas</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lankstinio plotis</dt><dd>60 mm</dd></div>
+                <div><dt>Lankstinio aukštis</dt><dd>130 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+
+          <a href="/produktai/rombas-60-120/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/rombas_6x12_aklinas.webp" alt="Rombas 60×120" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Rombas 60×120 aklina</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Rombo tipas</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lankstinio plotis</dt><dd>60 mm</dd></div>
+                <div><dt>Lankstinio aukštis</dt><dd>130 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+
+          <a href="/produktai/rombas-40-130-vidutinis/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/rombas_4x13_vidutinis.webp" alt="Rombas 40×130" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Rombas 40×130 vidutinis</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Rombo tipas</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lankstinio plotis</dt><dd>40 mm</dd></div>
+                <div><dt>Lankstinio aukštis</dt><dd>130 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+
+          <a href="/produktai/rombas-40-130/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/rombas_4x13_aklinas.webp" alt="Rombas 40×130" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Rombas 40×130 aklina</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Rombo tipas</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lankstinio plotis</dt><dd>40 mm</dd></div>
+                <div><dt>Lankstinio aukštis</dt><dd>130 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+
+          <a href="/produktai/zaliuze-vidutinis/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/zaliuze_viduine.webp" alt="Žaliuzi" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Žaliuzi vidutinė</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Žaliuzi</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lankstinio plotis</dt><dd>55 mm</dd></div>
+                <div><dt>Lankstinio aukštis</dt><dd>86 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+
+          <a href="/produktai/zaliuze/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/zaliuze_aklina.webp" alt="Žaliuzi" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Žaliuzi aklina</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Žaliuzi</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lankstinio plotis</dt><dd>55 mm</dd></div>
+                <div><dt>Lankstinio aukštis</dt><dd>86 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+
+        
+          
+          <a href="/produktai/eglute-vidutinis/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/eglute_viduine.webp" alt="Eglutė" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Eglutė vidutinė</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Eglutės raštas</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lankstinio plotis</dt><dd>55 mm</dd></div>
+                <div><dt>Lankstinio aukštis</dt><dd>110 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+
+          <a href="/produktai/eglute/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/eglute_aklina.webp" alt="Eglutė" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Eglutė aklina</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Eglutės raštas</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lankstinio plotis</dt><dd>55 mm</dd></div>
+                <div><dt>Lankstinio aukštis</dt><dd>110 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+          <a href="/produktai/plank-lamele/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/plank_aklina.webp" alt="Plank lamelė" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Plank lamelė</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Tiesi lamelė</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lamelės plotis</dt><dd>146 mm</dd></div>
+                <div><dt>Lamelės aukštis</dt><dd>20 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+          <a href="/produktai/plank-lamele-vidutinis/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/plank_vidutine.webp" alt="Plank lamelė" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Plank lamelė vidutinis</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Tiesi lamelė</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lamelės plotis</dt><dd>146 mm</dd></div>
+                <div><dt>Lamelės aukštis</dt><dd>20 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+          <a href="/produktai/plank-plati-lamele/" class="fence-card">
+            <div class="fence-card-visual">
+              <img src="assets/products/plank_plati_27cm.webp" alt="Plank plati lamelė" loading="lazy" decoding="async" />
+            </div>
+            <div class="fence-card-body">
+              <h3 class="fence-card-name">
+                <span>Plank plati lamelė</span>
+                <span class="fence-card-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 11L11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </h3>
+              <dl class="fence-card-specs">
+                <div><dt>Profilio tipas</dt><dd>Plati lamelė</dd></div>
+                <div><dt>Skardos storis</dt><dd>0,50 mm</dd></div>
+                <div><dt>Lamelės plotis</dt><dd>270 mm</dd></div>
+                <div><dt>Lamelės aukštis</dt><dd>25 mm</dd></div>
+              </dl>
+            </div>
+          </a>
+
+          </div>
+        </div>
+      </div>
+
+      <button class="fences-arrow fences-arrow-next" aria-label="Kitas">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       7. BANNER (CTA)
+       ============================================================ -->
+  <section class="banner" data-nav-theme="dark">
+    <div class="banner-bg">
+      <img src="assets/fenceIdea.webp" alt="" loading="lazy" decoding="async" />
+      <div class="banner-overlay"></div>
+    </div>
+
+    <div class="container-x banner-container">
+      <div class="banner-grid">
+        <div>
+          <p class="text-eyebrow banner-eyebrow">PROJEKTUOJAME KARTU</p>
+          <h2 class="banner-title">Kiekvienas sklypas — <em>savo charakterio.</em></h2>
+          <p class="banner-sub">Pasakykite, kokio rezultato siekiate, ir gausite pasiūlymą per 24 valandas. Be įsipareigojimų.</p>
+        </div>
+
+        <div class="banner-actions">
+          <a href="#kontaktai" class="banner-btn banner-btn-primary">
+            <span>Gauti pasiūlymą</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h8m0 0L7 3m4 4L7 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="tel:+37066256657" class="banner-btn banner-btn-ghost">
+            <span>+370 662 56657</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="banner-strip">
+        <div class="banner-strip-item">
+          <span class="banner-strip-num">01</span>
+          <span class="banner-strip-label">Sava gamyba</span>
+        </div>
+        <div class="banner-strip-item">
+          <span class="banner-strip-num">02</span>
+          <span class="banner-strip-label">Iki 5 m. garantija</span>
+        </div>
+        <div class="banner-strip-item">
+          <span class="banner-strip-num">03</span>
+          <span class="banner-strip-label">Tikslūs terminai</span>
+        </div>
+        <div class="banner-strip-item">
+          <span class="banner-strip-num">04</span>
+          <span class="banner-strip-label">340+ projektų</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       8. FAQ (HP7)
+       ============================================================ -->
+  <section class="faq" data-nav-theme="light">
+    <div class="container-x">
+      <div class="faq-grid">
+        <div class="faq-head">
+          <p class="text-eyebrow">DUK</p>
+          <h2 class="section-title faq-title">Dažniausiai užduodami <em>klausimai.</em></h2>
+          <p class="faq-subtitle">Viskas, ką svarbu žinoti apie mūsų tvorų sprendimus, gaminius, montavimo procesą ir projektų eigą.</p>
+          <a href="#kontaktai" class="faq-cta">
+            <span>Neradote atsakymo? Susisiekime</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 6h6m0 0L6 3m3 3L6 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Kiek laiko trunka tvoros gamyba ir montavimas?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrap">
+                <div class="faq-content-inner">Standartinis projektas — nuo 2 iki 4 savaičių. Gamyba trunka 7–14 dienų, priklausomai nuo apimties. Po pagaminimo derinama montavimo data, dažniausiai per 5–10 dienų.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Ar atvykstate matavimams į objektą?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrap">
+                <div class="faq-content-inner">Taip — Kauno regione matavimai nemokami. Toliau (Vilnius, Klaipėda, Šiauliai) — pagal sutartį, dažniausiai išlaidos kompensuojamos užsakius darbus.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Kokia garantija suteikiama gaminiams?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrap">
+                <div class="faq-content-inner">Skardos dangai — iki 10 metų gamintojo garantija. Gamybos darbams — 5 metai. Montavimo darbams — 2 metai. Visos garantijos išlaikomos jeigu produkcija eksploatuojama pagal rekomendacijas.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Ar galima rinktis spalvas pagal RAL paletę?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrap">
+                <div class="faq-content-inner">Taip. Siūlome standartines spalvas iš sandėlio (juoda matinė, antracitas, ruda, pilka), bei užsakomas spalvas pagal RAL — 7035, 7016, 8019, 9005 ir kitas. Užsakomos spalvos gali pailginti gamybos terminą iki 2 savaičių.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Ar montuojate vartų automatiką?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-wrap">
+                <div class="faq-content-inner">Taip. Dirbame su CAME, Nice ir BFT sistemomis. Pajungiame nuotolinio valdymo pultus, vaizdo telefonspynes, integraciją su namų automatika (Loxone, KNX). Pateikiame techninę dokumentaciją.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       9. CONTACT (HP8)
+       ============================================================ -->
+  <section class="contact" id="kontaktai" data-nav-theme="light">
+    <div class="container-xx">
+      <div class="contact-card">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p class="text-eyebrow">SUSISIEKITE</p>
+            <h2 class="section-title contact-title">Pasakykite apie projektą — <em>atsakysime per dieną.</em></h2>
+            <p class="contact-subtitle">Ar tai naujo namo tvora, ar esamos atnaujinimas — pradėkime nuo pokalbio.</p>
+
+            <div class="contact-details">
+              <div>
+                <p class="contact-detail-label">Telefonas</p>
+                <a href="tel:+37066256657" class="contact-detail-value">+370 662 56657</a>
+              </div>
+              <div>
+                <p class="contact-detail-label">El. paštas</p>
+                <a href="mailto:info@tvorteka.lt" class="contact-detail-value">info@tvorteka.lt</a>
+              </div>
+              <div>
+                <p class="contact-detail-label">Adresas</p>
+                <span class="contact-detail-value">Kaunas, Lietuva</span>
+              </div>
+              <div>
+                <p class="contact-detail-label">Darbo laikas</p>
+                <span class="contact-detail-value">I–V 8:00–18:00<br>VI 8:00–15:00</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" id="homepageContactForm" method="POST" action="https://formspree.io/f/xzdowagr">
+            <input type="hidden" name="_replyto" value="info@tvorteka.lt" />
+            <input type="hidden" name="_subject" value="Užklausa — Tvorteka" />
+
+            <h3 class="contact-form-title">Užklausos forma</h3>
+
+            <div id="homepageFormFields">
+              <div class="contact-form-row">
+                <div class="contact-form-field">
+                  <label class="input-label" for="vardas">Jūsų vardas</label>
+                  <input class="input" type="text" id="vardas" name="vardas" placeholder="Jonas Jonaitis" required />
+                </div>
+                <div class="contact-form-field">
+                  <label class="input-label" for="email">El. paštas</label>
+                  <input class="input" type="email" id="email" name="email" placeholder="vardas@email.lt" required />
+                </div>
+              </div>
+
+              <div class="contact-form-row">
+                <div class="contact-form-field">
+                  <label class="input-label" for="telefonas">Telefonas</label>
+                  <input class="input" type="tel" id="telefonas" name="telefonas" placeholder="+370 6__ ____" />
+                </div>
+                <div class="contact-form-field">
+                  <label class="input-label" for="tema">Užklausos tema</label>
+                  <input class="input" type="text" id="tema" name="tema" placeholder="Trumpai apibūdinkite" />
+                </div>
+              </div>
+
+              <div class="contact-form-field">
+                <label class="input-label" for="zinute">Užklausa</label>
+                <textarea class="input" id="zinute" name="zinute" placeholder="Aprašykite savo projektą" rows="3"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="contact-form-submit" id="homepageSubmitBtn">
+              <span>Siųsti užklausą</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7l10-5-3 5 3 5-10-5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <p class="contact-form-note">Atsakysime per 24 val. darbo dienomis.</p>
+
+            <div class="form-success" id="homepageFormSuccess" style="display:none;">
+              <div class="form-success__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <p class="form-success__title">Užklausa išsiųsta</p>
+              <p class="form-success__text">Susisieksime per 1–2 darbo dienas.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       10. FOOTER (HP9)
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container-x">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="footer-logo">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 4v16M21 4v16M7 4v16M11 4v16M15 4v16M19 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M3 9h18M3 15h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Tvorteka</span>
+          </a>
+          <p class="footer-desc">Premium klasės tvorų ir vartų gamyba bei montavimas. Sava gamykla Kaune. Visa Lietuva.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M8 14V8.5h2L10.5 6H8V4.5c0-.7.2-1.2 1.2-1.2H10.5V1c-.3 0-1-.1-1.8-.1C7 .9 5.7 2 5.7 4.1V6H4v2.5h1.7V14H8z"/></svg>
+            </a>
+            <a href="#" class="footer-social" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="7" r="2.6" stroke="currentColor" stroke-width="1.2"/><circle cx="10.6" cy="3.4" r="0.6" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Produktai</h4>
+          <ul class="footer-col-list">
+            <li><a href="/produktai/zaliuze/">Žaliuzi tvora</a></li>
+            <li><a href="/produktai/eglute/">Eglutės tvora</a></li>
+            <li><a href="/produktai/rombas-60-120/">Rombas 60×120</a></li>
+            <li><a href="/produktai/rombas-40-130/">Rombas 40×130</a></li>
+            <li><a href="/produktai/plank-lamele/">Plank lamelė</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Įmonė</h4>
+          <ul class="footer-col-list">
+            <li><a href="#apie">Apie mus</a></li>
+            <li><a href="#veikla">Veikla</a></li>
+            <li><a href="#kontaktai">Kontaktai</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Kontaktai</h4>
+          <ul class="footer-col-list">
+            <li><a href="tel:+37066256657">+370 662 56657</a></li>
+            <li><a href="mailto:info@tvorteka.lt">info@tvorteka.lt</a></li>
+            <li><a href="#kontaktai">Kaunas, Lietuva</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Tvorteka. Visos teisės saugomos.</span>
+        <span>Sukurta su dėmesiu detalėms · Kaunas</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script>
+  (function () {
+    'use strict';
+    var form = document.getElementById('homepageContactForm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = document.getElementById('homepageSubmitBtn');
+      if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Siunčiama…'; }
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (res.ok) {
+          document.getElementById('homepageFormFields').style.display = 'none';
+          if (btn) btn.style.display = 'none';
+          document.querySelector('.contact-form-note').style.display = 'none';
+          document.getElementById('homepageFormSuccess').style.display = 'block';
+        } else {
+          if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Siųsti užklausą'; }
+        }
+      }).catch(function () {
+        if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Siųsti užklausą'; }
+      });
+    });
+  }());
+  </script>
+</body>
+</html>

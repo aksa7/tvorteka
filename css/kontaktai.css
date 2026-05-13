@@ -1,0 +1,116 @@
+/* kontaktai.css — only what is not in main.css */
+
+/* ── Page hero (centered, light bg — different from .hero which is full-bleed dark) ── */
+.kontaktai-hero {
+  padding: 10rem 0 5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-ash-50);
+}
+
+.kontaktai-hero .section-title {
+  margin: 1.25rem auto;
+  max-width: 18ch;
+}
+
+.kontaktai-hero__sub {
+  color: var(--color-ash-400);
+  line-height: 1.7;
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+/* ── Standalone form wrap (main.css .contact-form sits inside .contact-grid, here it's standalone) ── */
+.kontaktai-form {
+  padding: 5rem 0 6rem;
+}
+
+/* ── 3 contact info blocks at bottom ── */
+.kontaktai-blocks {
+  padding: 0 0 8rem;
+}
+
+.kontaktai-blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--color-ash-50);
+}
+
+.kontaktai-block {
+  background: var(--color-paper-2);
+  border: 1px solid var(--color-ash-50);
+  border-radius: 8px;
+  padding: 2rem 1.75rem;
+  transition: border-color 0.3s var(--ease-out-quart), transform 0.3s var(--ease-out-quart);
+}
+
+.kontaktai-block:hover {
+  border-color: var(--color-ash-100);
+  transform: translateY(-3px);
+}
+
+.kontaktai-block__icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-ash-50);
+  border: 1px solid var(--color-ash-100);
+  border-radius: 8px;
+  color: var(--color-ash-600);
+  margin-bottom: 1.25rem;
+}
+
+.kontaktai-block__icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Form success state ── */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 3rem 0 1rem;
+}
+
+.form-success__icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-paper-2);
+  border: 1px solid var(--color-ash-100);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--color-ash-600);
+}
+
+.form-success__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin-bottom: 0.5rem;
+}
+
+.form-success__text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--color-ash-400);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .kontaktai-hero        { padding: 8rem 0 3.5rem; }
+  .kontaktai-blocks-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
