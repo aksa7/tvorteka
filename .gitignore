@@ -1,0 +1,10 @@
+.DS_Store
+dist/
+css/*.min.css
+js/*.min.js
+node_modules/
+.env
+.env.local
+assets/_originals/
+.DS_Store
+.vscode/

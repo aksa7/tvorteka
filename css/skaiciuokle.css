@@ -312,7 +312,24 @@
 .calc-field input:focus, .calc-field select:focus, .calc-field textarea:focus {
   outline: none; border-color: var(--color-ink);
 }
-.calc-field-hint { font-size: 0.75rem; color: var(--color-ash-400); }
+.calc-field-hint { font-size: 0.75rem; color: var(--color-ash-400); line-height: 1.45; }
+.calc-field-custom {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-ash-50);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.calc-field-custom label {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+}
+.calc-field select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background-color: var(--color-paper-2);
+}
 .calc-fields-contact { max-width: 640px; }
 @media (min-width: 640px) {
   .calc-fields-contact { grid-template-columns: repeat(2, 1fr); }

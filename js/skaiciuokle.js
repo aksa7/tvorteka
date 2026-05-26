@@ -34,6 +34,32 @@
     { id: 'plank-plati-lamele',      name: 'Plank plati lamelė',      img: '../assets/products/plank_plati_27cm.webp' }
   ];
 
+  const VARTAI_UZPILDAS = [
+    { id: 'be-uzpildo',          name: 'Be užpildo',           img: '../assets/skaiciuokle/vartaiBeUzpildo.webp' },
+    { id: 'zaliuzi-aklina',      name: 'Žaliuzi aklina',       img: '../assets/skaiciuokle/vartaiZaliuziAklina.webp' },
+    { id: 'zaliuzi-vidutinis',   name: 'Žaliuzi vidutinis',    img: '../assets/skaiciuokle/vartaiZaliuziVidutinis.webp' },
+    { id: 'rombas-aklinas',      name: 'Rombas aklina',        img: '../assets/skaiciuokle/vartaiRombasAklinas.webp' },
+    { id: 'rombas-vidutinis',    name: 'Rombas vidutinis',     img: '../assets/skaiciuokle/vartaiRombasVidutinis.webp' },
+    { id: 'eglute-aklina',       name: 'Eglutė aklina',        img: '../assets/skaiciuokle/vartaEgluteAklina.webp' },
+    { id: 'eglute-vidutine',     name: 'Eglutė vidutinė',      img: '../assets/skaiciuokle/vartaiEgluteVidutinis.webp' },
+    { id: 'plank-11cm-aklina',   name: 'Plank 11 cm aklina',   img: '../assets/skaiciuokle/vartaiPlank11cmaklina.webp' },
+    { id: 'plank-11cm-vidutine', name: 'Plank 11 cm vidutinė', img: '../assets/skaiciuokle/vartaiPlank11cmvidutine.webp' },
+    { id: 'plank-plati',         name: 'Plank plati lamelė',   img: '../assets/skaiciuokle/vartaiPlankPlati.webp' }
+  ];
+
+  const VARTELIAI_UZPILDAS = [
+    { id: 'be-uzpildo',          name: 'Be užpildo',           img: '../assets/skaiciuokle/varteliaiBeUzpildo.webp' },
+    { id: 'zaliuzi-aklina',      name: 'Žaliuzi aklina',       img: '../assets/skaiciuokle/varteliaiZaliuziAklina.webp' },
+    { id: 'zaliuzi-vidutine',    name: 'Žaliuzi vidutinė',     img: '../assets/skaiciuokle/varteliaiZaliuziVidutine.webp' },
+    { id: 'rombas-aklinas',      name: 'Rombas aklina',        img: '../assets/skaiciuokle/varteliaiRombasAklinas.webp' },
+    { id: 'rombas-vidutinis',    name: 'Rombas vidutinis',     img: '../assets/skaiciuokle/varteliaiRombasVidutinis.webp' },
+    { id: 'eglute-aklina',       name: 'Eglutė aklina',        img: '../assets/skaiciuokle/varteliaiEgluteAklina.webp' },
+    { id: 'eglute-vidutine',     name: 'Eglutė vidutinė',      img: '../assets/skaiciuokle/varteliaiEglutevidutine.webp' },
+    { id: 'plank-11cm-aklina',   name: 'Plank 11 cm aklina',   img: '../assets/skaiciuokle/varteliaiPlank11cmaklina.webp' },
+    { id: 'plank-11cm-vidutine', name: 'Plank 11 cm vidutinė', img: '../assets/skaiciuokle/varteliaiPlank11cmvidutine.webp' },
+    { id: 'plank-plati',         name: 'Plank plati lamelė',   img: '../assets/skaiciuokle/varteliaiPlankPlati.webp' }
+  ];
+
   const FENCE_MODELS = [
     { id: 'zaliuzi',     name: 'Žaliuzi',     img: '../assets/products/zaliuze_aklina.webp' },
     { id: 'rombo',       name: 'Rombo',       img: '../assets/products/rombas_6x12_aklinas.webp' },
@@ -53,10 +79,14 @@
     vartaiTipas: null,
     vartaiPlotis: null,
     vartaiAukstis: null,
+    vartaiPlotisCustom: null,
+    vartaiAukstisCustom: null,
     vartaiUzpildas: null,
     varteliai: null,
     varteliaiPlotis: null,
     varteliaiAukstis: null,
+    varteliaiPlotisCustom: null,
+    varteliaiAukstisCustom: null,
     varteliaiUzpildas: null,
     tvora: null,
     tvoraAukstis: null,
@@ -102,6 +132,40 @@
     return getActiveSteps()[currentStepIdx];
   }
 
+  function effectiveDimension(preset, custom) {
+    const customVal = custom != null && String(custom).trim() !== '' ? Number(custom) : null;
+    if (customVal != null && !Number.isNaN(customVal) && customVal > 0) return String(customVal);
+    if (preset != null && String(preset).trim() !== '') return String(preset);
+    return null;
+  }
+
+  function renderDimensionField(config) {
+    const {
+      id,
+      label,
+      presetField,
+      customField,
+      options,
+      presetValue,
+      customValue,
+      unit = 'mm'
+    } = config;
+    const hasCustom = customValue != null && String(customValue).trim() !== '';
+    return `
+      <div class="calc-field">
+        <label for="${id}">${label}</label>
+        <select id="${id}" data-field="${presetField}"${hasCustom ? ' disabled' : ''}>
+          <option value="">— Pasirinkite —</option>
+          ${options.map(v => `<option value="${v}"${String(presetValue) === String(v) && !hasCustom ? ' selected' : ''}>${v} ${unit}</option>`).join('')}
+        </select>
+        <div class="calc-field-custom">
+          <label for="${id}-custom">Kitas matmuo (${unit})</label>
+          <input type="number" id="${id}-custom" data-field="${customField}" min="1" step="1" placeholder="Įveskite reikiamą matmenį" value="${esc(customValue || '')}" />
+          <span class="calc-field-hint">Naudokite, jei sąraše nėra Jums reikiamo matmens</span>
+        </div>
+      </div>`;
+  }
+
   /* ---------- Validacija ---------- */
 
   function canProceed() {
@@ -111,10 +175,10 @@
       case 'spalva':              return !!state.spalva;
       case 'montavimas':          return !!state.montavimas;
       case 'vartai-tipas':        return !!state.vartaiTipas;
-      case 'vartai-matmenys':     return !!state.vartaiPlotis && !!state.vartaiAukstis;
+      case 'vartai-matmenys':     return !!effectiveDimension(state.vartaiPlotis, state.vartaiPlotisCustom) && !!effectiveDimension(state.vartaiAukstis, state.vartaiAukstisCustom);
       case 'vartai-uzpildas':     return !!state.vartaiUzpildas;
       case 'varteliai-tipas':     return !!state.varteliai;
-      case 'varteliai-matmenys':  return !!state.varteliaiPlotis && !!state.varteliaiAukstis;
+      case 'varteliai-matmenys':  return !!effectiveDimension(state.varteliaiPlotis, state.varteliaiPlotisCustom) && !!effectiveDimension(state.varteliaiAukstis, state.varteliaiAukstisCustom);
       case 'varteliai-uzpildas':  return !!state.varteliaiUzpildas;
       case 'tvora-tipas':         return !!state.tvora;
       case 'tvora-matmenys':      return !!state.tvoraAukstis && !!state.tvoraIlgis;
@@ -203,22 +267,26 @@
     'vartai-matmenys': () => `
       <p class="calc-step-eyebrow">4 / 14</p>
       <h2 class="calc-step-title">Pasirinkite vartų matmenis</h2>
-      <p class="calc-step-sub">Apytikslis vartų pravažiavimo plotis ir rėmo aukštis.</p>
+      <p class="calc-step-sub">Apytikslis vartų pravažiavimo plotis ir rėmo aukštis. Jei nerandate tinkamo matmens sąraše — įveskite savo reikšmę.</p>
       <div class="calc-fields calc-fields-2">
-        <div class="calc-field">
-          <label for="vartai-plotis">Pravažiavimo plotis (mm)</label>
-          <select id="vartai-plotis" data-field="vartaiPlotis">
-            <option value="">— Pasirinkite —</option>
-            ${VARTAI_PLOCIAI.map(v => `<option value="${v}"${String(state.vartaiPlotis) === String(v) ? ' selected' : ''}>${v} mm</option>`).join('')}
-          </select>
-        </div>
-        <div class="calc-field">
-          <label for="vartai-aukstis">Rėmo aukštis (mm)</label>
-          <select id="vartai-aukstis" data-field="vartaiAukstis">
-            <option value="">— Pasirinkite —</option>
-            ${VARTAI_AUKSCIAI.map(v => `<option value="${v}"${String(state.vartaiAukstis) === String(v) ? ' selected' : ''}>${v} mm</option>`).join('')}
-          </select>
-        </div>
+        ${renderDimensionField({
+          id: 'vartai-plotis',
+          label: 'Pravažiavimo plotis (mm)',
+          presetField: 'vartaiPlotis',
+          customField: 'vartaiPlotisCustom',
+          options: VARTAI_PLOCIAI,
+          presetValue: state.vartaiPlotis,
+          customValue: state.vartaiPlotisCustom
+        })}
+        ${renderDimensionField({
+          id: 'vartai-aukstis',
+          label: 'Rėmo aukštis (mm)',
+          presetField: 'vartaiAukstis',
+          customField: 'vartaiAukstisCustom',
+          options: VARTAI_AUKSCIAI,
+          presetValue: state.vartaiAukstis,
+          customValue: state.vartaiAukstisCustom
+        })}
       </div>`,
 
     'vartai-uzpildas': () => `
@@ -226,7 +294,7 @@
       <h2 class="calc-step-title">Pasirinkite vartų užpildą</h2>
       <p class="calc-step-sub">Profilio tipas, kurį norėtumėte matyti savo vartuose.</p>
       <div class="calc-options calc-options-products" data-field="vartaiUzpildas">
-        ${PRODUCTS.map(p => renderCard(p, state.vartaiUzpildas === p.id, true)).join('')}
+        ${VARTAI_UZPILDAS.map(p => renderCard(p, state.vartaiUzpildas === p.id, true)).join('')}
       </div>`,
 
     'varteliai-tipas': () => `
@@ -241,22 +309,26 @@
     'varteliai-matmenys': () => `
       <p class="calc-step-eyebrow">7 / 14</p>
       <h2 class="calc-step-title">Pasirinkite vartelių matmenis</h2>
-      <p class="calc-step-sub">Apytikslis rėmo plotis ir aukštis.</p>
+      <p class="calc-step-sub">Apytikslis rėmo plotis ir aukštis. Jei nerandate tinkamo matmens sąraše — įveskite savo reikšmę.</p>
       <div class="calc-fields calc-fields-2">
-        <div class="calc-field">
-          <label for="varteliai-plotis">Rėmo plotis (mm)</label>
-          <select id="varteliai-plotis" data-field="varteliaiPlotis">
-            <option value="">— Pasirinkite —</option>
-            ${VARTELIAI_PLOCIAI.map(v => `<option value="${v}"${String(state.varteliaiPlotis) === String(v) ? ' selected' : ''}>${v} mm</option>`).join('')}
-          </select>
-        </div>
-        <div class="calc-field">
-          <label for="varteliai-aukstis">Rėmo aukštis (mm)</label>
-          <select id="varteliai-aukstis" data-field="varteliaiAukstis">
-            <option value="">— Pasirinkite —</option>
-            ${VARTELIAI_AUKSCIAI.map(v => `<option value="${v}"${String(state.varteliaiAukstis) === String(v) ? ' selected' : ''}>${v} mm</option>`).join('')}
-          </select>
-        </div>
+        ${renderDimensionField({
+          id: 'varteliai-plotis',
+          label: 'Rėmo plotis (mm)',
+          presetField: 'varteliaiPlotis',
+          customField: 'varteliaiPlotisCustom',
+          options: VARTELIAI_PLOCIAI,
+          presetValue: state.varteliaiPlotis,
+          customValue: state.varteliaiPlotisCustom
+        })}
+        ${renderDimensionField({
+          id: 'varteliai-aukstis',
+          label: 'Rėmo aukštis (mm)',
+          presetField: 'varteliaiAukstis',
+          customField: 'varteliaiAukstisCustom',
+          options: VARTELIAI_AUKSCIAI,
+          presetValue: state.varteliaiAukstis,
+          customValue: state.varteliaiAukstisCustom
+        })}
       </div>`,
 
     'varteliai-uzpildas': () => `
@@ -264,7 +336,7 @@
       <h2 class="calc-step-title">Pasirinkite vartelių užpildą</h2>
       <p class="calc-step-sub">Profilio tipas, kurį norėtumėte matyti savo varteliuose.</p>
       <div class="calc-options calc-options-products" data-field="varteliaiUzpildas">
-        ${PRODUCTS.map(p => renderCard(p, state.varteliaiUzpildas === p.id, true)).join('')}
+        ${VARTELIAI_UZPILDAS.map(p => renderCard(p, state.varteliaiUzpildas === p.id, true)).join('')}
       </div>`,
 
     'tvora-tipas': () => `
@@ -371,11 +443,15 @@
     }
     if (state.montavimas) items.push({ label: 'Montavimas', value: state.montavimas === 'tik-gaminys' ? 'Tik gaminys' : 'Gaminys ir montavimas' });
     if (state.vartaiTipas) items.push({ label: 'Vartai', value: state.vartaiTipas === 'stumdomi' ? 'Stumdomi vartai' : state.vartaiTipas === 'varstomi' ? 'Varstomi vartai' : 'Vartų nereikia' });
-    if (state.vartaiPlotis && state.vartaiAukstis) items.push({ label: 'Vartų matmenys', value: `${state.vartaiPlotis} × ${state.vartaiAukstis} mm` });
-    if (state.vartaiUzpildas) { const p = PRODUCTS.find(x => x.id === state.vartaiUzpildas); if (p) items.push({ label: 'Vartų užpildas', value: p.name }); }
+    const vartaiPlotis = effectiveDimension(state.vartaiPlotis, state.vartaiPlotisCustom);
+    const vartaiAukstis = effectiveDimension(state.vartaiAukstis, state.vartaiAukstisCustom);
+    if (vartaiPlotis && vartaiAukstis) items.push({ label: 'Vartų matmenys', value: `${vartaiPlotis} × ${vartaiAukstis} mm` });
+    if (state.vartaiUzpildas) { const p = VARTAI_UZPILDAS.find(x => x.id === state.vartaiUzpildas); if (p) items.push({ label: 'Vartų užpildas', value: p.name }); }
     if (state.varteliai) items.push({ label: 'Varteliai', value: state.varteliai === 'reikia' ? 'Reikia' : 'Nereikia' });
-    if (state.varteliaiPlotis && state.varteliaiAukstis) items.push({ label: 'Vartelių matmenys', value: `${state.varteliaiPlotis} × ${state.varteliaiAukstis} mm` });
-    if (state.varteliaiUzpildas) { const p = PRODUCTS.find(x => x.id === state.varteliaiUzpildas); if (p) items.push({ label: 'Vartelių užpildas', value: p.name }); }
+    const varteliaiPlotis = effectiveDimension(state.varteliaiPlotis, state.varteliaiPlotisCustom);
+    const varteliaiAukstis = effectiveDimension(state.varteliaiAukstis, state.varteliaiAukstisCustom);
+    if (varteliaiPlotis && varteliaiAukstis) items.push({ label: 'Vartelių matmenys', value: `${varteliaiPlotis} × ${varteliaiAukstis} mm` });
+    if (state.varteliaiUzpildas) { const p = VARTELIAI_UZPILDAS.find(x => x.id === state.varteliaiUzpildas); if (p) items.push({ label: 'Vartelių užpildas', value: p.name }); }
     if (state.tvora) items.push({ label: 'Fasadinė tvora', value: state.tvora === 'reikia' ? 'Reikia' : 'Nereikia' });
     if (state.tvoraAukstis && state.tvoraIlgis) items.push({ label: 'Tvoros matmenys', value: `${state.tvoraAukstis} m × ${state.tvoraIlgis} m` });
     if (state.tvoraKategorija) items.push({ label: 'Tvoros kategorija', value: state.tvoraKategorija === 'skardines' ? 'Skardinės tvoros' : 'Metalinės tvoros (greitai)' });
@@ -517,6 +593,7 @@
       _subject: subject,
       message: body,
       _replyto: state.email,
+      _gotcha: '',
       vardas: state.vardas || '',
       pavarde: state.pavarde || '',
       telefonas: state.telefonas || '',
@@ -606,15 +683,53 @@
       }
     });
 
+    const DIMENSION_PAIRS = [
+      ['vartaiPlotis', 'vartaiPlotisCustom'],
+      ['vartaiAukstis', 'vartaiAukstisCustom'],
+      ['varteliaiPlotis', 'varteliaiPlotisCustom'],
+      ['varteliaiAukstis', 'varteliaiAukstisCustom']
+    ];
+
     const updateFromInput = (el) => {
       if (!el || !el.dataset || !el.dataset.field) return;
+      const field = el.dataset.field;
       let val = el.value;
       if (el.type === 'number' || el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'TEXTAREA') {
-        state[el.dataset.field] = (val === '' || val == null) ? null : val;
+        state[field] = (val === '' || val == null) ? null : val;
+
+        DIMENSION_PAIRS.forEach(([presetField, customField]) => {
+          if (field === presetField && val) {
+            state[customField] = null;
+            const customEl = panel.querySelector(`[data-field="${customField}"]`);
+            if (customEl) customEl.value = '';
+          }
+          if (field === customField && val) state[presetField] = null;
+        });
+
         updateNav();
         renderSummary();
+
+        if (DIMENSION_PAIRS.some(([presetField, customField]) => field === presetField || field === customField)) {
+          syncDimensionFields();
+        }
       }
     };
+
+    function syncDimensionFields() {
+      DIMENSION_PAIRS.forEach(([presetField, customField]) => {
+        const presetEl = panel.querySelector(`[data-field="${presetField}"]`);
+        const customEl = panel.querySelector(`[data-field="${customField}"]`);
+        if (!presetEl || !customEl) return;
+
+        const hasCustom = state[customField] != null && String(state[customField]).trim() !== '';
+        presetEl.disabled = hasCustom;
+        if (hasCustom) {
+          presetEl.value = '';
+        } else if (state[presetField]) {
+          presetEl.value = String(state[presetField]);
+        }
+      });
+    }
     panel.addEventListener('input', e => updateFromInput(e.target));
     panel.addEventListener('change', e => updateFromInput(e.target));
 

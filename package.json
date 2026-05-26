@@ -4,12 +4,16 @@
   "private": true,
   "description": "Tvorteka static website",
   "scripts": {
-    "build": "lightningcss --minify css/tokens.css -o css/tokens.min.css && lightningcss --minify css/main.css -o css/main.min.css && lightningcss --minify css/skaiciuokle.css -o css/skaiciuokle.min.css && lightningcss --minify css/kontaktai.css -o css/kontaktai.min.css && lightningcss --minify css/apie.css -o css/apie.min.css && esbuild js/main.js --minify --outfile=js/main.min.js && esbuild js/kontaktai.js --minify --outfile=js/kontaktai.min.js && esbuild js/apie.js --minify --outfile=js/apie.min.js && esbuild js/skaiciuokle.js --minify --outfile=js/skaiciuokle.min.js",
+    "build": "node scripts/build-script.mjs",
+    "dev": "python3 -m http.server 5500",
+    "check": "node scripts/check-script.mjs",
     "build:css": "lightningcss --minify css/tokens.css -o css/tokens.min.css && lightningcss --minify css/main.css -o css/main.min.css && lightningcss --minify css/skaiciuokle.css -o css/skaiciuokle.min.css && lightningcss --minify css/kontaktai.css -o css/kontaktai.min.css && lightningcss --minify css/apie.css -o css/apie.min.css",
-    "build:js": "esbuild js/main.js --minify --outfile=js/main.min.js && esbuild js/kontaktai.js --minify --outfile=js/kontaktai.min.js && esbuild js/apie.js --minify --outfile=js/apie.min.js && esbuild js/skaiciuokle.js --minify --outfile=js/skaiciuokle.min.js"
+    "build:js": "terser js/main.js -o js/main.min.js -c -m && terser js/kontaktai.js -o js/kontaktai.min.js -c -m && tserer js/apie.js -o js/apie.min.js -c -m && tserer js/skaiciuokle.js -o js/skaiciuokle.min.js -c -m"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0",
-    "lightningcss-cli": "^1.29.0"
+    "html-validate": "^9.7.0",
+    "lightningcss-cli": "^1.29.0",
+    "linkinator": "^6.1.4",
+    "terser": "^5.39.0"
   }
 }

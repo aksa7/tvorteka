@@ -3,8 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <link rel="preload" as="image" href="/assets/vartai.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/tvortekaHeroMobile.webp" media="(max-width: 767px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/tvorteka_hero.webp" media="(min-width: 768px)" fetchpriority="high" />
   <meta name="theme-color" content="#0E0E0C" />
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <title>Tvorteka — tvorų ir vartų gamyba bei montavimas | Kaunas</title>
   <link rel="canonical" href="https://tvorteka.lt/" />
 
@@ -74,19 +81,25 @@
       transition:background-color .5s var(--ease-out-quart),backdrop-filter .5s var(--ease-out-quart);
       --nav-fg:var(--color-paper);--nav-fg-soft:rgba(247,246,242,.7);
       --nav-bg-pill:rgba(0,0,0,.25);--nav-bd-pill:rgba(255,255,255,.15);
-      --nav-cta-bg:var(--color-paper);--nav-cta-fg:var(--color-ink)}
+      --nav-cta-bg:var(--color-paper);--nav-cta-fg:var(--color-ink);
+      --nav-logo-filter:brightness(0) invert(1)}
     .navbar[data-theme="light"]{
       --nav-fg:var(--color-ink);--nav-fg-soft:var(--color-ash-400);
       --nav-bg-pill:rgba(14,14,12,.04);--nav-bd-pill:var(--color-ash-50);
-      --nav-cta-bg:var(--color-ink);--nav-cta-fg:var(--color-paper)}
+      --nav-cta-bg:var(--color-ink);--nav-cta-fg:var(--color-paper);
+      --nav-logo-filter:none}
     .navbar.is-scrolled{backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%)}
     .navbar.is-scrolled[data-theme="dark"]{background-color:rgba(14,14,12,.55)}
     .navbar.is-scrolled[data-theme="light"]{background-color:rgba(247,246,242,.85);border-bottom:1px solid var(--color-ash-50)}
     .navbar-inner{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0;gap:1.5rem}
-    .navbar-logo{display:flex;align-items:center;gap:.5rem;color:var(--nav-fg);
-      font-family:var(--font-display);font-size:1.25rem;font-weight:500;
-      letter-spacing:-.025em;transition:color .4s var(--ease-out-quart);flex-shrink:0}
-    .navbar-logo svg{width:24px;height:24px}
+    @media(min-width:1024px){
+      .navbar-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
+      .navbar-logo{grid-column:1;justify-self:center;margin-right:.5rem}
+      .navbar-pill{grid-column:2}
+      .navbar-actions{grid-column:3;justify-self:end}
+    }
+    .navbar-logo{display:flex;align-items:center;flex-shrink:0}
+    .navbar-logo img{height:40px;width:auto;display:block;filter:var(--nav-logo-filter);transition:filter .4s var(--ease-out-quart)}
     .navbar-pill{display:none;padding:.375rem;gap:.125rem;background-color:var(--nav-bg-pill);
       border:1px solid var(--nav-bd-pill);border-radius:999px;
       backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
@@ -128,6 +141,7 @@
     .hero{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;
       color:var(--color-paper);isolation:isolate}
     .hero-bg{position:absolute;inset:0;z-index:-1}
+    .hero-bg picture{display:block;width:100%;height:100%}
     .hero-bg img{width:100%;height:100%;object-fit:cover;animation:hero-zoom 12s var(--ease-out-quart) forwards}
     .hero-bg-overlay{position:absolute;inset:0;
       background:linear-gradient(100deg,rgba(14,14,12,.78) 0%,rgba(14,14,12,.55) 35%,rgba(14,14,12,.25) 65%,rgba(14,14,12,.15) 100%)}
@@ -203,11 +217,7 @@
     <div class="container-x">
       <nav class="navbar-inner" aria-label="Pagrindinis meniu">
         <a href="/" class="navbar-logo" aria-label="Tvorteka — į pradžią">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 4v16M21 4v16M7 4v16M11 4v16M15 4v16M19 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M3 9h18M3 15h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <span>Tvorteka</span>
+          <img src="/assets/tvortekaLogo.png" alt="Tvorteka" width="132" height="36" decoding="async" />
         </a>
 
         <ul class="navbar-pill" role="menubar">
@@ -269,7 +279,10 @@
        ============================================================ -->
   <section class="hero" data-nav-theme="dark">
     <div class="hero-bg">
-      <img src="assets/tvorteka_hero.webp" alt="" fetchpriority="high" decoding="async" />
+      <picture>
+        <source media="(max-width: 767px)" srcset="assets/tvortekaHeroMobile.webp" />
+        <img src="assets/tvorteka_hero.webp" alt="" fetchpriority="high" decoding="async" />
+      </picture>
       <div class="hero-bg-overlay"></div>
       <div class="hero-bg-vignette"></div>
     </div>
@@ -416,7 +429,7 @@
               <span class="service-card-number">04</span>
               <h3 class="service-card-title">Vartų automatika</h3>
             </div>
-            <p class="service-card-desc">CAME, Nice, BFT sistemos. Nuotolinis valdymas, integracija su namų automatika.</p>
+            <p class="service-card-desc">Modernios vartų automatikos technologijos — patikimas ir tylus veikimas, nuotolinis valdymas bei integracija su Jūsų namų sistema.</p>
             <a href="#kontaktai" class="service-card-link">
               <span>Plačiau</span>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 9l6-6m0 0H4m5 0v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -895,7 +908,7 @@
             </button>
             <div class="faq-content">
               <div class="faq-content-wrap">
-                <div class="faq-content-inner">Taip. Dirbame su CAME, Nice ir BFT sistemomis. Pajungiame nuotolinio valdymo pultus, vaizdo telefonspynes, integraciją su namų automatika (Loxone, KNX). Pateikiame techninę dokumentaciją.</div>
+                <div class="faq-content-inner">Taip. Montuojame patikimas, šiuolaikiškas vartų automatikos sistemas — nuotolinį valdymą, vaizdo telefonspynes ir integraciją su namų automatika. Pateikiame techninę dokumentaciją.</div>
               </div>
             </div>
           </div>
@@ -938,7 +951,6 @@
           </div>
 
           <form class="contact-form" id="homepageContactForm" method="POST" action="https://formspree.io/f/xzdowagr">
-            <input type="hidden" name="_replyto" value="info@tvorteka.lt" />
             <input type="hidden" name="_subject" value="Užklausa — Tvorteka" />
 
             <h3 class="contact-form-title">Užklausos forma</h3>
@@ -972,6 +984,8 @@
               </div>
             </div>
 
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
+
             <button type="submit" class="contact-form-submit" id="homepageSubmitBtn">
               <span>Siųsti užklausą</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1003,13 +1017,7 @@
     <div class="container-x">
       <div class="footer-grid">
         <div>
-          <a href="/" class="footer-logo">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M3 4v16M21 4v16M7 4v16M11 4v16M15 4v16M19 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M3 9h18M3 15h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span>Tvorteka</span>
-          </a>
+          <a href="/" class="footer-logo"><img src="/assets/tvortekaLogo.png" alt="Tvorteka" width="148" height="40" decoding="async" /></a>
           <p class="footer-desc">Premium klasės tvorų ir vartų gamyba bei montavimas. Sava gamykla Kaune. Visa Lietuva.</p>
           <div class="footer-socials">
             <a href="#" class="footer-social" aria-label="Facebook">

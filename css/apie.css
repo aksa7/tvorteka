@@ -5,7 +5,7 @@
 
 /* ---------- About Hero ---------- */
 .about-hero {
-  padding: 9rem 0 5rem;
+  padding: 5rem 0 5rem;
   background: white;
 }
 
@@ -74,7 +74,7 @@
 
 /* ---------- Stats (dark) ---------- */
 .about-stats {
-  background: var(--color-ink); color: var(--color-paper); padding: 7rem 0;
+  background: var(--color-ink); color: var(--color-paper); padding: 4rem 0;
 }
 
 .about-stats-grid {
@@ -129,7 +129,6 @@
 
 .about-stats-small-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2.5rem;
 }
 .about-stat-small-num { display: flex; align-items: flex-start; line-height: 1; margin-bottom: 0.5rem; }
 .about-stat-small .about-stat-number { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 400; }

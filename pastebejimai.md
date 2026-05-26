@@ -1,0 +1,1 @@
+Skaiciuokleje, pildant jeigu nera tokio matmens pasirinkimo kokio klientui reikia - turi buti stulpelio ivedimas, kad jis pats galetu irasyti toki, kokio jam reikia.

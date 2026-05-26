@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0E0E0C" />
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <title>Kontaktai — Tvorteka | Susisiekite dėl tvorų kainoraščio</title>
   <link rel="canonical" href="https://tvorteka.lt/kontaktai/" />
 
@@ -62,11 +69,7 @@
     <div class="container-x">
       <nav class="navbar-inner" aria-label="Pagrindinis meniu">
         <a href="/" class="navbar-logo" aria-label="Tvorteka — į pradžią">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 4v16M21 4v16M7 4v16M11 4v16M15 4v16M19 4v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M3 9h18M3 15h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <span>Tvorteka</span>
+          <img src="/assets/tvortekaLogo.png" alt="Tvorteka" width="132" height="36" decoding="async" />
         </a>
 
         <ul class="navbar-pill" role="menubar">
@@ -136,7 +139,6 @@
   <section class="kontaktai-form" id="forma">
     <div class="container-x">
       <form class="contact-form reveal-scroll" id="contactForm" method="POST" action="https://formspree.io/f/xzdowagr" style="max-width: 820px; margin: 0 auto;">
-        <input type="hidden" name="_replyto" value="info@tvorteka.lt" />
         <input type="hidden" name="_subject" value="Užklausa — Tvorteka" />
 
         <div id="formFields">
@@ -146,8 +148,8 @@
               <input class="input" type="text" id="vardas" name="vardas" placeholder="Įrašykite vardą..." autocomplete="given-name" />
             </div>
             <div class="contact-form-field">
-              <label class="input-label" for="pastas">Elektroninis paštas</label>
-              <input class="input" type="email" id="pastas" name="pastas" placeholder="Įrašykite elektroninį paštą..." autocomplete="email" />
+              <label class="input-label" for="email">Elektroninis paštas</label>
+              <input class="input" type="email" id="email" name="email" placeholder="Įrašykite elektroninį paštą..." autocomplete="email" />
             </div>
           </div>
 
@@ -172,6 +174,8 @@
             </div>
           </div>
         </div>
+
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
 
         <button class="contact-form-submit" id="submitBtn" type="submit">
           Siųsti užklausą
@@ -250,10 +254,7 @@
       <div class="footer-grid">
         <div>
           <a href="/" class="footer-logo">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 6h18M3 12h18M3 18h12"/>
-            </svg>
-            Tvorteka
+            <img src="/assets/tvortekaLogo.png" alt="Tvorteka" width="148" height="40" decoding="async" />
           </a>
           <p class="footer-desc">Lietuviška metalinių tvorų gamyba ir montavimas nuo 2010 m.</p>
           <div class="footer-socials">
