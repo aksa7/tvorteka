@@ -21,7 +21,7 @@
 
 /* ── Standalone form wrap (main.css .contact-form sits inside .contact-grid, here it's standalone) ── */
 .kontaktai-form {
-  padding: 5rem 0 6rem;
+  padding: 5rem 0 0;
 }
 
 /* ── 3 contact info blocks at bottom ── */
@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  padding-top: 4rem;
+  padding-top: var(--space-lg);
   border-top: 1px solid var(--color-ash-50);
 }
 

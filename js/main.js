@@ -264,6 +264,30 @@
   };
 
 
+  /* ---------- Partners marquee — constant speed across viewports ---------- */
+  const setupPartnersMarquee = () => {
+    const track = document.querySelector(".partners-track");
+    if (!track) return;
+
+    const mobileMq = window.matchMedia("(max-width: 768px)");
+
+    const updateDuration = () => {
+      if (!mobileMq.matches) {
+        track.style.removeProperty("--marquee-duration");
+        return;
+      }
+      const trackWidth = track.scrollWidth / 2;
+      const duration = trackWidth / 60;
+      track.style.setProperty("--marquee-duration", `${duration}s`);
+    };
+
+    updateDuration();
+    mobileMq.addEventListener("change", updateDuration);
+    window.addEventListener("load", updateDuration);
+    window.addEventListener("resize", updateDuration);
+  };
+
+
   /* ---------- Init ---------- */
   const init = () => {
     setupMobileMenu();
@@ -274,6 +298,7 @@
     setupFenceCarousel();
     setupProductGallery();
     setupCatalogTabs();
+    setupPartnersMarquee();
   };
 
   if (document.readyState === "loading") {

@@ -94,12 +94,13 @@
     .navbar-inner{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0;gap:1.5rem}
     @media(min-width:1024px){
       .navbar-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
-      .navbar-logo{grid-column:1;justify-self:center;margin-right:.5rem}
+      .navbar-logo{grid-column:1;justify-self:start;margin-right:0}
       .navbar-pill{grid-column:2}
       .navbar-actions{grid-column:3;justify-self:end}
     }
     .navbar-logo{display:flex;align-items:center;flex-shrink:0}
-    .navbar-logo img{height:40px;width:auto;display:block;filter:var(--nav-logo-filter);transition:filter .4s var(--ease-out-quart)}
+    .navbar-logo img{height:44px;width:auto;display:block;margin-left:calc(-57/152*44px);filter:var(--nav-logo-filter);transition:filter .4s var(--ease-out-quart)}
+    @media(min-width:768px){.navbar-logo img{height:50px;margin-left:calc(-57/152*50px)}}
     .navbar-pill{display:none;padding:.375rem;gap:.125rem;background-color:var(--nav-bg-pill);
       border:1px solid var(--nav-bd-pill);border-radius:999px;
       backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
@@ -358,7 +359,6 @@
       <div class="partner-logo"><img src="assets/partnerlogos/bauenLogo.webp" alt="" loading="lazy" decoding="async" /></div>
       <div class="partner-logo"><img src="assets/partnerlogos/diktumLogo.webp" alt="" loading="lazy" decoding="async" /></div>
       <div class="partner-logo"><img src="assets/partnerlogos/lemoraLogo.webp" alt="" loading="lazy" decoding="async" /></div>
-      <div class="partner-logo"><img src="assets/partnerlogos/statybetaLogo.webp" alt="" loading="lazy" decoding="async" /></div>
       <div class="partner-logo"><img src="assets/partnerlogos/strabasLogo.webp" alt="" loading="lazy" decoding="async" /></div>
     </div>
 
@@ -367,7 +367,6 @@
       <div class="partner-logo"><img src="assets/partnerlogos/bauenLogo.webp" alt="" loading="lazy" decoding="async" /></div>
       <div class="partner-logo"><img src="assets/partnerlogos/diktumLogo.webp" alt="" loading="lazy" decoding="async" /></div>
       <div class="partner-logo"><img src="assets/partnerlogos/lemoraLogo.webp" alt="" loading="lazy" decoding="async" /></div>
-      <div class="partner-logo"><img src="assets/partnerlogos/statybetaLogo.webp" alt="" loading="lazy" decoding="async" /></div>
       <div class="partner-logo"><img src="assets/partnerlogos/strabasLogo.webp" alt="" loading="lazy" decoding="async" /></div>
     </div>
 
@@ -963,14 +962,14 @@
                 </div>
                 <div class="contact-form-field">
                   <label class="input-label" for="email">El. paštas</label>
-                  <input class="input" type="email" id="email" name="email" placeholder="vardas@email.lt" required />
+                  <input class="input" type="email" id="email" name="email" placeholder="vardas@gmail.com" required />
                 </div>
               </div>
 
               <div class="contact-form-row">
                 <div class="contact-form-field">
                   <label class="input-label" for="telefonas">Telefonas</label>
-                  <input class="input" type="tel" id="telefonas" name="telefonas" placeholder="+370 6__ ____" />
+                  <input class="input" type="tel" id="telefonas" name="telefonas" placeholder="+370 6" />
                 </div>
                 <div class="contact-form-field">
                   <label class="input-label" for="tema">Užklausos tema</label>
@@ -1017,7 +1016,9 @@
     <div class="container-x">
       <div class="footer-grid">
         <div>
-          <a href="/" class="footer-logo"><img src="/assets/tvortekaLogo.png" alt="Tvorteka" width="148" height="40" decoding="async" /></a>
+          <a href="/" class="footer-logo" aria-label="Tvorteka — į pradžią">
+            <img src="/assets/tvortekaLogo.png" alt="Tvorteka" width="132" height="36" decoding="async" />
+          </a>
           <p class="footer-desc">Premium klasės tvorų ir vartų gamyba bei montavimas. Sava gamykla Kaune. Visa Lietuva.</p>
           <div class="footer-socials">
             <a href="#" class="footer-social" aria-label="Facebook">
@@ -1027,17 +1028,6 @@
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="7" r="2.6" stroke="currentColor" stroke-width="1.2"/><circle cx="10.6" cy="3.4" r="0.6" fill="currentColor"/></svg>
             </a>
           </div>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Produktai</h4>
-          <ul class="footer-col-list">
-            <li><a href="/produktai/zaliuze/">Žaliuzi tvora</a></li>
-            <li><a href="/produktai/eglute/">Eglutės tvora</a></li>
-            <li><a href="/produktai/rombas-60-120/">Rombas 60×120</a></li>
-            <li><a href="/produktai/rombas-40-130/">Rombas 40×130</a></li>
-            <li><a href="/produktai/plank-lamele/">Plank lamelė</a></li>
-          </ul>
         </div>
 
         <div>

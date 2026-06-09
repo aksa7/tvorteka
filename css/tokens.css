@@ -2,6 +2,18 @@
    TVORTEKA — Design tokens, reset & font faces
    ============================================================ */
 
+/* ---------- Spacing ---------- */
+:root {
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --section-y: clamp(2.5rem, 6vw, 5rem);
+  --section-y-tight: clamp(1.5rem, 4vw, 3rem);
+}
+
 /* ---------- Modern reset ---------- */
 *, *::before, *::after {
   box-sizing: border-box;

@@ -60,12 +60,6 @@
     { id: 'plank-plati',         name: 'Plank plati lamelė',   img: '../assets/skaiciuokle/varteliaiPlankPlati.webp' }
   ];
 
-  const FENCE_MODELS = [
-    { id: 'zaliuzi',     name: 'Žaliuzi',     img: '../assets/products/zaliuze_aklina.webp' },
-    { id: 'rombo',       name: 'Rombo',       img: '../assets/products/rombas_6x12_aklinas.webp' },
-    { id: 'tvoralentes', name: 'Tvoralentės', img: '../assets/products/plank_aklina.webp' }
-  ];
-
   const VARTAI_PLOCIAI = [3000, 3500, 4000, 4500, 5000, 5500, 6000];
   const VARTAI_AUKSCIAI = [1200, 1400, 1500, 1600, 1700, 1800, 2000];
   const VARTELIAI_PLOCIAI = [1000, 1100, 1200, 1300, 1400, 1500];
@@ -383,8 +377,8 @@
       <p class="calc-step-eyebrow">12 / 14</p>
       <h2 class="calc-step-title">Pasirinkite tvoros modelį</h2>
       <p class="calc-step-sub">Profilio tipas, kurį naudosime tvoros segmentuose.</p>
-      <div class="calc-options calc-options-3" data-field="tvoraModelis">
-        ${FENCE_MODELS.map(m => renderCard(m, state.tvoraModelis === m.id, true)).join('')}
+      <div class="calc-options calc-options-products" data-field="tvoraModelis">
+        ${PRODUCTS.map(m => renderCard(m, state.tvoraModelis === m.id, true)).join('')}
       </div>`,
 
     'tvora-pamatelis': () => `
@@ -455,7 +449,7 @@
     if (state.tvora) items.push({ label: 'Fasadinė tvora', value: state.tvora === 'reikia' ? 'Reikia' : 'Nereikia' });
     if (state.tvoraAukstis && state.tvoraIlgis) items.push({ label: 'Tvoros matmenys', value: `${state.tvoraAukstis} m × ${state.tvoraIlgis} m` });
     if (state.tvoraKategorija) items.push({ label: 'Tvoros kategorija', value: state.tvoraKategorija === 'skardines' ? 'Skardinės tvoros' : 'Metalinės tvoros (greitai)' });
-    if (state.tvoraModelis) { const m = FENCE_MODELS.find(x => x.id === state.tvoraModelis); if (m) items.push({ label: 'Tvoros modelis', value: m.name }); }
+    if (state.tvoraModelis) { const m = PRODUCTS.find(x => x.id === state.tvoraModelis); if (m) items.push({ label: 'Tvoros modelis', value: m.name }); }
     if (state.pamatelis) items.push({ label: 'Pamatėlis', value: state.pamatelis === 'reikalingas' ? 'Reikalingas' : 'Nereikalingas' });
     if (state.stulpas) items.push({ label: 'Stulpas', value: state.stulpas === 'reikalingas' ? 'Reikalingas' : 'Nereikalingas' });
     return items;

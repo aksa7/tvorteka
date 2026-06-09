@@ -8,7 +8,7 @@
     "dev": "python3 -m http.server 5500",
     "check": "node scripts/check-script.mjs",
     "build:css": "lightningcss --minify css/tokens.css -o css/tokens.min.css && lightningcss --minify css/main.css -o css/main.min.css && lightningcss --minify css/skaiciuokle.css -o css/skaiciuokle.min.css && lightningcss --minify css/kontaktai.css -o css/kontaktai.min.css && lightningcss --minify css/apie.css -o css/apie.min.css",
-    "build:js": "terser js/main.js -o js/main.min.js -c -m && terser js/kontaktai.js -o js/kontaktai.min.js -c -m && tserer js/apie.js -o js/apie.min.js -c -m && tserer js/skaiciuokle.js -o js/skaiciuokle.min.js -c -m"
+    "build:js": "terser js/main.js -o js/main.min.js -c -m && terser js/kontaktai.js -o js/kontaktai.min.js -c -m && terser js/apie.js -o js/apie.min.js -c -m && terser js/skaiciuokle.js -o js/skaiciuokle.min.js -c -m"
   },
   "devDependencies": {
     "html-validate": "^9.7.0",
