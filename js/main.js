@@ -90,11 +90,30 @@
   /* ---------- Process line draw ---------- */
   const setupProcessLine = () => {
     const line = document.querySelector(".process-line");
-    if (!line) return;
+    const steps = document.querySelector(".process-steps");
+    if (!line || !steps) return;
+
+    const markers = steps.querySelectorAll(".process-step-marker");
+    if (markers.length < 2) return;
+
+    const positionLine = () => {
+      if (window.innerWidth < 1024) return;
+      const first = markers[0].getBoundingClientRect();
+      const last = markers[markers.length - 1].getBoundingClientRect();
+      const container = steps.getBoundingClientRect();
+      const startX = first.left + first.width / 2 - container.left;
+      const endX = last.left + last.width / 2 - container.left;
+      line.style.left = `${startX}px`;
+      line.style.width = `${Math.max(0, endX - startX)}px`;
+    };
+
+    positionLine();
+    window.addEventListener("resize", positionLine);
 
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          positionLine();
           line.classList.add("is-drawn");
           obs.unobserve(line);
         }
