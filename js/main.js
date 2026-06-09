@@ -44,24 +44,32 @@
     const sections = document.querySelectorAll("[data-nav-theme]");
 
     const onScroll = () => {
-      navbar.classList.toggle("is-scrolled", window.scrollY > 32);
+      if (onScroll._ticking) return;
+      onScroll._ticking = true;
+      requestAnimationFrame(() => {
+        onScroll._ticking = false;
+        const scrolled = window.scrollY > 32;
+        if (onScroll._wasScrolled !== scrolled) {
+          navbar.classList.toggle("is-scrolled", scrolled);
+          onScroll._wasScrolled = scrolled;
+        }
 
-      // Determine theme based on what section the navbar is over
-      if (sections.length === 0) return;
-      const navHeight = navbar.offsetHeight;
-      const probe = navHeight / 2;
-      let activeTheme = navbar.dataset.theme || "dark";
+        if (sections.length === 0) return;
+        const navHeight = navbar.offsetHeight;
+        const probe = navHeight / 2;
+        let activeTheme = navbar.dataset.theme || "dark";
 
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= probe && rect.bottom > probe) {
-          activeTheme = section.dataset.navTheme || activeTheme;
+        sections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= probe && rect.bottom > probe) {
+            activeTheme = section.dataset.navTheme || activeTheme;
+          }
+        });
+
+        if (navbar.dataset.theme !== activeTheme) {
+          navbar.dataset.theme = activeTheme;
         }
       });
-
-      if (navbar.dataset.theme !== activeTheme) {
-        navbar.dataset.theme = activeTheme;
-      }
     };
 
     onScroll();
@@ -286,6 +294,7 @@
   /* ---------- Partners marquee — constant speed across viewports ---------- */
   const setupPartnersMarquee = () => {
     const track = document.querySelector(".partners-track");
+    const marquee = document.querySelector(".partners-marquee");
     if (!track) return;
 
     const mobileMq = window.matchMedia("(max-width: 768px)");
@@ -300,10 +309,31 @@
       track.style.setProperty("--marquee-duration", `${duration}s`);
     };
 
+    const startMarquee = () => {
+      if (marquee && mobileMq.matches) {
+        marquee.classList.add("is-running");
+      }
+    };
+
     updateDuration();
     mobileMq.addEventListener("change", updateDuration);
     window.addEventListener("load", updateDuration);
     window.addEventListener("resize", updateDuration);
+
+    if (mobileMq.matches) {
+      window.setTimeout(startMarquee, 2800);
+    } else if (marquee) {
+      marquee.classList.add("is-running");
+    }
+
+    mobileMq.addEventListener("change", () => {
+      if (mobileMq.matches) {
+        marquee?.classList.remove("is-running");
+        window.setTimeout(startMarquee, 2800);
+      } else {
+        marquee?.classList.add("is-running");
+      }
+    });
   };
 
 

@@ -144,6 +144,7 @@
     .hero-bg{position:absolute;inset:0;z-index:-1}
     .hero-bg picture{display:block;width:100%;height:100%}
     .hero-bg img{width:100%;height:100%;object-fit:cover;animation:hero-zoom 12s var(--ease-out-quart) forwards}
+    @media(max-width:767px){.hero-bg img{animation:none;transform:scale(1)}}
     .hero-bg-overlay{position:absolute;inset:0;
       background:linear-gradient(100deg,rgba(14,14,12,.78) 0%,rgba(14,14,12,.55) 35%,rgba(14,14,12,.25) 65%,rgba(14,14,12,.15) 100%)}
     .hero-bg-vignette{position:absolute;inset:0;
@@ -315,8 +316,8 @@
         </div>
       </div>
 
-      <div class="hero-foot reveal-load reveal-6">
-        <dl class="hero-stats">
+      <div class="hero-foot">
+        <dl class="hero-stats reveal-load reveal-6">
           <div>
             <dt>Patirties metai</dt>
             <dd>5+</dd>
@@ -335,9 +336,11 @@
 
         <a href="#partneriai" class="hero-scroll">
           <span>Slinkti žemyn</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M7 2v10m0 0L3 8m4 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <span class="hero-scroll-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 2v10m0 0L3 8m4 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
         </a>
       </div>
     </div>

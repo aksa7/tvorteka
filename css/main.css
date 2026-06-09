@@ -26,7 +26,9 @@
 
 /* 02. ANIMATIONS */
 @keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes subtle-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes scroll-hint { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -5px, 0); } }
+@keyframes scroll-hint-opacity { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+@keyframes hero-scroll-in { from { opacity: 0; transform: translate3d(0, 8px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
 @keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -251,7 +253,10 @@ body.menu-open .navbar-burger span:nth-child(3) { top: 50%; margin-top: -0.75px;
 .hero { position: relative; min-height: 100vh; min-height: 100dvh; overflow: hidden; color: var(--color-paper); isolation: isolate; }
 .hero-bg { position: absolute; inset: 0; z-index: -1; }
 .hero-bg picture { display: block; width: 100%; height: 100%; }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; animation: hero-zoom 12s var(--ease-out-quart) forwards; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; animation: hero-zoom 12s var(--ease-out-quart) forwards; transform: translateZ(0); }
+@media (max-width: 767px) {
+  .hero-bg img { animation: none; transform: scale(1); }
+}
 .hero-bg-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(14, 14, 12, 0.78) 0%, rgba(14, 14, 12, 0.55) 35%, rgba(14, 14, 12, 0.25) 65%, rgba(14, 14, 12, 0.15) 100%); }
 .hero-bg-vignette {
   position: absolute; inset: 0;
@@ -294,10 +299,30 @@ body.menu-open .navbar-burger span:nth-child(3) { top: 50%; margin-top: -0.75px;
 .hero-stats-sep { width: 1px; height: 36px; background-color: rgba(255, 255, 255, 0.15); display: none; }
 @media (min-width: 640px) { .hero-stats-sep { display: block; } }
 
-.hero-scroll { display: inline-flex; align-items: center; gap: 0.625rem; color: rgba(247, 246, 242, 0.7); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s var(--ease-out-quart); align-self: flex-start; }
+.hero-scroll {
+  display: inline-flex; align-items: center; gap: 0.625rem;
+  color: rgba(247, 246, 242, 0.7); font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s var(--ease-out-quart);
+  align-self: flex-start;
+  opacity: 0;
+  animation: hero-scroll-in 0.9s var(--ease-out-expo) 1.75s forwards;
+}
 @media (min-width: 768px) { .hero-scroll { align-self: end; } }
 .hero-scroll:hover { color: var(--color-paper); }
-.hero-scroll svg { animation: subtle-float 2.5s ease-in-out infinite; }
+.hero-scroll-icon {
+  display: inline-flex; flex-shrink: 0;
+  backface-visibility: hidden;
+  animation: scroll-hint 2.8s ease-in-out 2.7s infinite;
+}
+@media (max-width: 767px) {
+  .hero-scroll-icon { animation: scroll-hint-opacity 2.4s ease-in-out 2.7s infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg img { animation: none; transform: none; }
+  .hero-scroll { animation: none; opacity: 1; }
+  .hero-scroll-icon { animation: none; opacity: 0.75; }
+  .reveal-load { animation: none; opacity: 1; transform: none; }
+}
 
 
 /* 05. PARTNERS */
@@ -334,8 +359,10 @@ body.menu-open .navbar-burger span:nth-child(3) { top: 50%; margin-top: -0.75px;
     width: max-content;
     justify-content: flex-start;
     animation: marquee var(--marquee-duration, 30s) linear infinite;
-    animation-play-state: running !important;
-    will-change: transform;
+    animation-play-state: paused;
+  }
+  .partners-marquee.is-running .partners-track {
+    animation-play-state: running;
   }
   .partner-logo { height: 5rem; padding: 0 1rem; }
 }
