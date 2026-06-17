@@ -44,7 +44,7 @@ Nieko daugiau nekeisk. Grąžink: kokie failai pakeisti ir ar build'as pavyko.
 
 ## ŽINGSNIS 2 — Partnerių karuselė (pagrindinis pugas)
 **Failai:** `index.html`, `js/main.js`, `css/main.css`
-**Tikslai:** Pašalinti Statybeta, perdaryti karuselę kad mobile veiktų stabiliai
+**Tikslai:** Pašalinti Statybeta, perdaryti karuselę kad mobile bei desktop veiktų stabiliai
 
 ```
 Projektas: /Users/aksendo/IT-Projektai/tvortekav1 (vanilla HTML/CSS/JS)
@@ -83,7 +83,7 @@ Projektas: /Users/aksendo/IT-Projektai/tvortekav1 (vanilla HTML/CSS/JS)
 Atlik šiuos 4 pakeitimus — kiekvieną tiksliai kaip aprašyta:
 
 1. NAVBAR LOGO per mažas (hp1.jpg)
-   `css/main.css` — `.navbar-logo` arba `.navbar-logo img` / `.navbar-logo svg` padidink dydį ~25% desktop'e. Mobile (max-width: 767px) palik esamą arba padidink mažiau (10-15%), kad nepersikristų su hamburger menu.
+   `css/main.css` — `.navbar-logo` arba `.navbar-logo img` / `.navbar-logo svg` padidink dydį ~25% desktop'e. Mobile (max-width: 767px) palik esamą arba padidink mažiau (10-15%), kad nepersikristų su hamburger menu. Taip pat paslink labiau i kaire puse kur parodyta su rodykle nuotraukoje ant desktopo, virs Tvorteka uzraso grynai kad butu.
 
 2. PROCESAS TIMELINE — pirmasis žingsnis turi žalią rėmelį (hp3.jpg — matosi „Susibugine" žalias komentaras)
    `css/main.css` — surask taisyklę, kuri uždeda border/outline ant `.process-step:first-child` arba `.process-step.is-active` arba pirmo step'o. Pašalink tą border/outline taisyklę arba override'ink: `border: none; outline: none; box-shadow: none;`
@@ -95,14 +95,13 @@ Atlik šiuos 4 pakeitimus — kiekvieną tiksliai kaip aprašyta:
 4. KONTAKTŲ FORMA (hp5.jpg — raudonas X ant telefono, žalias „vardas@gmail.com")
    `index.html` — surask homepage'o kontaktų formos sekciją (ne /kontaktai/ puslapį):
    a) El. pašto input'o `placeholder` pakeisk iš `vardas@email.lt` į `vardas@gmail.com`
-   b) Telefono lauko grupę (`<div>` su label TELEFONAS ir `<input type="tel">`) visą IŠTRINK
-   `js/main.js` — surask formos submit handler'į ir pašalink bet kokią telefono validaciją (jei yra `required` check'as `telefonas` laukui).
+   b) Telefono lauko grupėje toliau placeholderyje kur po +3706 tuos apatinius bruksnius istrink.
 
 Po pakeitimų paleisk: npm run build:css
 Grąžink: kokie konkretūs CSS selektoriai/HTML elementai pakeisti.
 ```
 
-**Patikrinimas:** 1) Navbar logo didesnis; 2) Process „01" be rėmo; 3) DUK klausimai Geist šriftu; 4) Forma be telefono lauko.
+**Patikrinimas:** 1) Navbar logo didesnis; 2) Process „01" be rėmo; 3) DUK klausimai Geist šriftu;
 
 ---
 
@@ -331,43 +330,10 @@ Projektas: /Users/aksendo/IT-Projektai/tvortekav1 (vanilla HTML/CSS/JS)
    - Rombas 40×130
    - Plank lamelė
    - Plank plati lamelė
+   - visus tvoru produktus kuriuos turime
    
-   Nuotraukas/ikonas naudok tokias pačias kaip artimiausiems variantams (pvz. Rombas 60×120 — ta pati nuotrauka kaip Rombo).
+   Nuotraukas/ikonas naudok tokias pačias kaip artimiausiems variantams (pvz. Rombas 60×120 vidutinis — ta pati nuotrauka kaip Rombo vidutinio, rombas 60x120 aklina, tokia kaip aklina photo.).
 
-2. CUSTOM MATMENŲ LAUKAS
-   Matmenų pasirinkimo žingsniuose (vartai, varteliai, tvora) — prie standartinių dydžių pasirinkimų pridėk paskutinę opciją „Kitas matmuo".
-   
-   Kai vartotojas pasirenka „Kitas matmuo", po pasirinkimų atsiranda input laukas:
-   <input 
-     type="text" 
-     id="custom-dimension"
-     placeholder="pvz. 3000 x 1800"
-     pattern="\d+\s*[x×]\s*\d+"
-   >
-   
-   Validacija (prieš leidžiant eiti į kitą žingsnį): patikrink ar formatas atitinka `ŠxA` (skaičiai × skaičiai). Jei ne — parodyk klaidos pranešimą: „Įveskite formatą: Plotis × Aukštis (pvz. 3000 × 1800)".
-
-`css/skaiciuokle.css` — pridėk stilių custom input laukui:
-.custom-dimension-wrap {
-  margin-top: 1rem;
-  display: none;
-}
-.custom-dimension-wrap.visible {
-  display: block;
-}
-#custom-dimension {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-.dimension-error {
-  color: red;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  display: none;
-}
 
 Grąžink: kiek tvorų tipų buvo, kiek tapo, ir kur tiksliai custom input rodomas.
 ```
