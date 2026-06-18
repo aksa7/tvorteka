@@ -131,6 +131,7 @@ function buildDist() {
     '_redirects',
     'robots.txt',
     'sitemap.xml',
+    'BingSiteAuth.xml',
   ];
   for (const file of staticRootFiles) {
     copyIfExists(join(ROOT, file), join(DIST, file));
