@@ -20,17 +20,15 @@
 .calc-header .text-eyebrow { margin-bottom: 1rem; }
 .calc-header h1 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(1.75rem, 4.5vw, 3.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   margin-bottom: 1rem;
-  font-variation-settings: "opsz" 144, "SOFT" 30;
 }
 .calc-header h1 em {
   font-style: italic;
   color: var(--color-ash-400);
-  font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 .calc-header p {
   color: var(--color-ash-400);
@@ -182,13 +180,12 @@
 }
 .calc-step-title {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   line-height: 1.1;
   letter-spacing: -0.025em;
   text-align: center;
   margin-bottom: 0.75rem;
-  font-variation-settings: "opsz" 144, "SOFT" 30;
 }
 .calc-step-sub {
   text-align: center;
@@ -405,18 +402,16 @@
 }
 .calc-success h2 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   line-height: 1.1;
   letter-spacing: -0.025em;
-  font-variation-settings: "opsz" 144, "SOFT" 30;
   max-width: 540px;
   margin-bottom: 0.5rem;
 }
 .calc-success h2 em {
   font-style: italic;
   color: var(--color-ash-400);
-  font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 .calc-success p {
   color: var(--color-ash-400);

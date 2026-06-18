@@ -11,6 +11,8 @@
     "build:js": "terser js/main.js -o js/main.min.js -c -m && terser js/kontaktai.js -o js/kontaktai.min.js -c -m && terser js/apie.js -o js/apie.min.js -c -m && terser js/skaiciuokle.js -o js/skaiciuokle.min.js -c -m"
   },
   "devDependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/source-serif-4": "^5.2.9",
     "html-validate": "^9.7.0",
     "lightningcss-cli": "^1.29.0",
     "linkinator": "^6.1.4",
