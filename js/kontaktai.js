@@ -1,4 +1,4 @@
-/* kontaktai.js — form validation & Formspree AJAX submission */
+/* kontaktai.js - form validation & Formspree AJAX submission */
 
 (function () {
   'use strict';

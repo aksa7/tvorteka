@@ -1,5 +1,5 @@
 /* ============================================================
-   TVORTEKA — Skaičiuoklės logika
+   TVORTEKA - Skaičiuoklės logika
    ============================================================ */
 
 (function () {
@@ -7,7 +7,7 @@
 
   /* ---------- Konfigūracija ---------- */
   // ĮRAŠYKITE SAVO FORMSPREE ID ČIA (pvz.: 'xnqkvpzy')
-  // Kol paliksite 'YOUR_FORMSPREE_ID' — forma naudos mailto: fallback
+  // Kol paliksite 'YOUR_FORMSPREE_ID' - forma naudos mailto: fallback
   const FORMSPREE_ID = 'xzdowagr';
   const RECIPIENT_EMAIL = 'info@tvorteka.lt';
 
@@ -149,7 +149,7 @@
       <div class="calc-field">
         <label for="${id}">${label}</label>
         <select id="${id}" data-field="${presetField}"${hasCustom ? ' disabled' : ''}>
-          <option value="">— Pasirinkite —</option>
+          <option value="">- Pasirinkite -</option>
           ${options.map(v => `<option value="${v}"${String(presetValue) === String(v) && !hasCustom ? ' selected' : ''}>${v} ${unit}</option>`).join('')}
         </select>
         <div class="calc-field-custom">
@@ -261,7 +261,7 @@
     'vartai-matmenys': () => `
       <p class="calc-step-eyebrow">4 / 14</p>
       <h2 class="calc-step-title">Pasirinkite vartų matmenis</h2>
-      <p class="calc-step-sub">Apytikslis vartų pravažiavimo plotis ir rėmo aukštis. Jei nerandate tinkamo matmens sąraše — įveskite savo reikšmę.</p>
+      <p class="calc-step-sub">Apytikslis vartų pravažiavimo plotis ir rėmo aukštis. Jei nerandate tinkamo matmens sąraše - įveskite savo reikšmę.</p>
       <div class="calc-fields calc-fields-2">
         ${renderDimensionField({
           id: 'vartai-plotis',
@@ -303,7 +303,7 @@
     'varteliai-matmenys': () => `
       <p class="calc-step-eyebrow">7 / 14</p>
       <h2 class="calc-step-title">Pasirinkite vartelių matmenis</h2>
-      <p class="calc-step-sub">Apytikslis rėmo plotis ir aukštis. Jei nerandate tinkamo matmens sąraše — įveskite savo reikšmę.</p>
+      <p class="calc-step-sub">Apytikslis rėmo plotis ir aukštis. Jei nerandate tinkamo matmens sąraše - įveskite savo reikšmę.</p>
       <div class="calc-fields calc-fields-2">
         ${renderDimensionField({
           id: 'varteliai-plotis',
@@ -336,7 +336,7 @@
     'tvora-tipas': () => `
       <p class="calc-step-eyebrow">9 / 14</p>
       <h2 class="calc-step-title">Ar Jums reikalinga fasadinė tvora?</h2>
-      <p class="calc-step-sub">Tvora aplink sklypą — užbaigia bendrą kompoziciją.</p>
+      <p class="calc-step-sub">Tvora aplink sklypą - užbaigia bendrą kompoziciją.</p>
       <div class="calc-options calc-options-2" data-field="tvora">
         ${renderCard({ id: 'reikia',   name: 'Mane domina fasadinė tvora', icon: ICONS.fence }, state.tvora === 'reikia', false)}
         ${renderCard({ id: 'nereikia', name: 'Fasadinės tvoros nereikia',  icon: ICONS.no },    state.tvora === 'nereikia', false)}
@@ -350,7 +350,7 @@
         <div class="calc-field">
           <label for="tvora-aukstis">Tvoros aukštis (m)</label>
           <select id="tvora-aukstis" data-field="tvoraAukstis">
-            <option value="">— Pasirinkite —</option>
+            <option value="">- Pasirinkite -</option>
             <option value="1.2"${state.tvoraAukstis === '1.2' ? ' selected' : ''}>1,2 m</option>
             <option value="1.5"${state.tvoraAukstis === '1.5' ? ' selected' : ''}>1,5 m</option>
             <option value="1.8"${state.tvoraAukstis === '1.8' ? ' selected' : ''}>1,8 m</option>
@@ -367,7 +367,7 @@
     'tvora-kategorija': () => `
       <p class="calc-step-eyebrow">11 / 14</p>
       <h2 class="calc-step-title">Pasirinkite tvoros kategoriją</h2>
-      <p class="calc-step-sub">Mūsų pagrindinė specializacija — skardinės tvoros.</p>
+      <p class="calc-step-sub">Mūsų pagrindinė specializacija - skardinės tvoros.</p>
       <div class="calc-options calc-options-2" data-field="tvoraKategorija">
         ${renderCard({ id: 'skardines', name: 'Skardinės tvoros', icon: ICONS.sheet }, state.tvoraKategorija === 'skardines', false)}
         ${renderCard({ id: 'metalines', name: 'Metalinės tvoros', desc: 'Greitai', icon: ICONS.metal }, state.tvoraKategorija === 'metalines', false)}
@@ -384,7 +384,7 @@
     'tvora-pamatelis': () => `
       <p class="calc-step-eyebrow">13 / 14</p>
       <h2 class="calc-step-title">Pasirinkite pamatėlį</h2>
-      <p class="calc-step-sub">Pamatėlis — apatinė atrama, kuri tvirtinama prie žemės ir suteikia tvarkingą kraštinę liniją.</p>
+      <p class="calc-step-sub">Pamatėlis - apatinė atrama, kuri tvirtinama prie žemės ir suteikia tvarkingą kraštinę liniją.</p>
       <div class="calc-options calc-options-2" data-field="pamatelis">
         ${renderCard({ id: 'nereikalingas', name: 'Nereikalingas', icon: ICONS.no },   state.pamatelis === 'nereikalingas', false)}
         ${renderCard({ id: 'reikalingas',   name: 'Reikalingas',   icon: ICONS.base }, state.pamatelis === 'reikalingas', false)}
@@ -402,7 +402,7 @@
     'kontaktai': () => `
       <p class="calc-step-eyebrow">PASKUTINIS ŽINGSNIS</p>
       <h2 class="calc-step-title">Susisiekite</h2>
-      <p class="calc-step-sub">Užpildykite kontaktus — patyręs specialistas susisieks su Jumis su paskaičiuota kaina per 24 valandas.</p>
+      <p class="calc-step-sub">Užpildykite kontaktus - patyręs specialistas susisieks su Jumis su paskaičiuota kaina per 24 valandas.</p>
       <div class="calc-fields calc-fields-contact">
         <div class="calc-field">
           <label for="vardas">Vardas *</label>
@@ -571,10 +571,10 @@
   function submit() {
     if (!canProceed()) return;
 
-    const subject = `Skaičiuoklės užklausa — ${state.vardas || ''}`.trim();
+    const subject = `Skaičiuoklės užklausa - ${state.vardas || ''}`.trim();
     const body = buildEmailBody();
 
-    // Jei Formspree ID dar nepakeistas — naudojame mailto: fallback
+    // Jei Formspree ID dar nepakeistas - naudojame mailto: fallback
     if (!FORMSPREE_ID || FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
       window.location.href = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       showSuccess();

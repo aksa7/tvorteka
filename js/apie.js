@@ -1,5 +1,5 @@
 /* ============================================================
-   TVORTEKA — /apie/ page scripts
+   TVORTEKA - /apie/ page scripts
    Scroll-triggered reveals, counters, mobile menu
    ============================================================ */
 

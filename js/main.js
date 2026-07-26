@@ -1,5 +1,5 @@
 /* ============================================================
-   TVORTEKA — Main scripts (v3)
+   TVORTEKA - Main scripts (v3)
    ============================================================ */
 
 (() => {
@@ -150,7 +150,7 @@
   };
 
 
-  /* ---------- Fence carousel — side arrows, exact 3 cards ---------- */
+  /* ---------- Fence carousel - side arrows, exact 3 cards ---------- */
   const setupFenceCarousel = () => {
     const section = document.querySelector(".fences-section");
     if (!section) return;
@@ -223,7 +223,7 @@
 
       if (!track || slides.length === 0) return;
 
-      // Vienas slide — be karuselės
+      // Vienas slide - be karuselės
       if (slides.length === 1) {
         const dotsBox = gallery.querySelector(".product-gallery-dots");
         if (dotsBox) dotsBox.style.display = "none";
@@ -266,7 +266,7 @@
       gallery.addEventListener("mouseenter", stop);
       gallery.addEventListener("mouseleave", start);
 
-      // Init — paleisti iš karto
+      // Init - paleisti iš karto
       goTo(0);
       start();
     });
@@ -291,7 +291,7 @@
   };
 
 
-  /* ---------- Partners marquee — constant speed across viewports ---------- */
+  /* ---------- Partners marquee - constant speed across viewports ---------- */
   const setupPartnersMarquee = () => {
     const track = document.querySelector(".partners-track");
     const marquee = document.querySelector(".partners-marquee");
