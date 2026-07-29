@@ -8,6 +8,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <title>Kontaktai - Tvorteka | Susisiekite dėl tvorų kainoraščio</title>
@@ -17,13 +18,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Tvorteka" />
   <meta property="og:title" content="Kontaktai - Tvorteka | Susisiekite dėl tvorų kainoraščio" />
-  <meta property="og:description" content="Susisiekite su Tvorteka dėl tvorų kainoraščio ar konsultacijos. Tel. +370 662 566 57, el. paštas info@tvorteka.lt. Dirbame visoje Lietuvoje, biuras Kaune." />
+  <meta property="og:description" content="Susisiekite su Tvorteka dėl tvorų kainoraščio ar konsultacijos. Tel. +370 662 566 57, el. paštas info@tvorteka.lt. Dirbame visoje Lietuvoje, biuras Vilniuje." />
   <meta property="og:url" content="https://tvorteka.lt/kontaktai/" />
   <meta property="og:image" content="https://tvorteka.lt/assets/tvorteka_hero.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="lt_LT" />
-  <meta name="description" content="Susisiekite su Tvorteka dėl tvorų kainoraščio ar konsultacijos. Tel. +370 662 566 57, el. paštas info@tvorteka.lt. Dirbame visoje Lietuvoje, biuras Kaune." />
+  <meta name="description" content="Susisiekite su Tvorteka dėl tvorų kainoraščio ar konsultacijos. Tel. +370 662 566 57, el. paštas info@tvorteka.lt. Dirbame visoje Lietuvoje, biuras Vilniuje." />
   <link rel="preload" href="../assets/fonts/Inter-Latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../assets/fonts/SourceSerif4-Latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../css/tokens.css" />
@@ -41,25 +42,56 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FenceContractor",
-    "name": "Tvorteka",
-    "url": "https://tvorteka.lt",
-    "telephone": "+37066256657",
-    "email": "info@tvorteka.lt",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Kaunas",
-      "addressCountry": "LT"
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "HomeAndConstructionBusiness",
+    "GeneralContractor"
+  ],
+  "@id": "https://tvorteka.lt/#organization",
+  "name": "Tvorteka",
+  "url": "https://tvorteka.lt",
+  "telephone": "+37066256657",
+  "email": "info@tvorteka.lt",
+  "logo": "https://tvorteka.lt/assets/tvortekaLogo.png",
+  "image": "https://tvorteka.lt/assets/tvorteka_hero.webp",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "A. Vivulskio g. 41-38",
+    "addressLocality": "Vilnius",
+    "postalCode": "LT-03114",
+    "addressCountry": "LT"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Lietuva"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "18:00"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Lietuva"
-    },
-    "sameAs": [],
-    "priceRange": "€€"
-  }
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "15:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61589661284002",
+    "https://www.instagram.com/tvorteka/"
+  ],
+  "priceRange": "€€"
+}
   </script>
 </head>
 <body>
@@ -239,9 +271,9 @@
           </div>
           <p class="text-eyebrow" style="margin-bottom: 0.5rem;">Lokacija</p>
           <p class="contact-detail-label" style="font-family: var(--font-sans); font-size: 0.875rem; color: var(--color-ash-400); line-height: 1.6; margin-bottom: 0.75rem;">
-            Lietuva.
+            A. Vivulskio g. 41-38, LT-03114.
           </p>
-          <span class="contact-detail-value">Kaunas</span>
+          <span class="contact-detail-value">A. Vivulskio g. 41-38, LT-03114 Vilnius</span>
         </div>
 
       </div>
@@ -256,12 +288,12 @@
                     <a href="/" class="footer-logo" aria-label="Tvorteka - į pradžią">
             <img src="/assets/tvortekaLogo.png" alt="Tvorteka" width="132" height="36" decoding="async" />
           </a>
-          <p class="footer-desc">Lietuviška metalinių tvorų gamyba ir montavimas Kaune. 5+ metų patirtis.</p>
+          <p class="footer-desc">Lietuviška metalinių tvorų gamyba ir montavimas Vilniuje. 5+ metų patirtis.</p>
           <div class="footer-socials">
-            <a href="#" class="footer-social" aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=61589661284002" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Tvorteka Facebook">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
-            <a href="#" class="footer-social" aria-label="Instagram">
+            <a href="https://www.instagram.com/tvorteka/" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Tvorteka Instagram">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
             </a>
           </div>
@@ -280,7 +312,7 @@
           <ul class="footer-col-list">
             <li><a href="mailto:info@tvorteka.lt">info@tvorteka.lt</a></li>
             <li><a href="tel:+37066256657">+370 662 566 57</a></li>
-            <li><a href="#">Kaunas, Lietuva</a></li>
+            <li><a href="/kontaktai/">A. Vivulskio g. 41-38, Vilnius</a></li>
           </ul>
         </div>
       </div>
