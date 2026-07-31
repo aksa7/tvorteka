@@ -93,6 +93,7 @@
     pavarde: null,
     email: null,
     telefonas: null,
+    miestas: null,
     zinute: null
   };
 
@@ -180,7 +181,7 @@
       case 'tvora-modelis':       return !!state.tvoraModelis;
       case 'tvora-pamatelis':     return !!state.pamatelis;
       case 'tvora-stulpas':       return !!state.stulpas;
-      case 'kontaktai':           return !!state.vardas && !!state.email && !!state.telefonas && /\S+@\S+\.\S+/.test(state.email);
+      case 'kontaktai':           return !!state.vardas && !!state.email && !!state.telefonas && !!state.miestas && /\S+@\S+\.\S+/.test(state.email);
       default:                    return true;
     }
   }
@@ -420,6 +421,10 @@
           <label for="telefonas">Telefono numeris *</label>
           <input type="tel" id="telefonas" data-field="telefonas" placeholder="+370 000 00000" value="${esc(state.telefonas)}" required />
         </div>
+        <div class="calc-field">
+          <label for="miestas">Miestas *</label>
+          <input type="text" id="miestas" data-field="miestas" placeholder="Miestas" value="${esc(state.miestas)}" required autocomplete="address-level2" />
+        </div>
         <div class="calc-field calc-field-full">
           <label for="zinute">Žinutė (neprivaloma)</label>
           <textarea id="zinute" data-field="zinute" rows="3" placeholder="Papildoma informacija apie projektą...">${esc(state.zinute)}</textarea>
@@ -560,6 +565,7 @@
     if (state.vardas) lines.push(`Vardas: ${state.vardas}${state.pavarde ? ' ' + state.pavarde : ''}`);
     if (state.email) lines.push(`El. paštas: ${state.email}`);
     if (state.telefonas) lines.push(`Telefonas: ${state.telefonas}`);
+    if (state.miestas) lines.push(`Miestas: ${state.miestas}`);
     if (state.zinute) {
       lines.push('');
       lines.push('Žinutė:');
@@ -591,6 +597,7 @@
       vardas: state.vardas || '',
       pavarde: state.pavarde || '',
       telefonas: state.telefonas || '',
+      miestas: state.miestas || '',
       zinute: state.zinute || ''
     };
 

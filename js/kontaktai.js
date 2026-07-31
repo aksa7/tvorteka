@@ -3,7 +3,7 @@
 (function () {
   'use strict';
 
-  var REQUIRED = ['vardas', 'email', 'uzklausa'];
+  var REQUIRED = ['vardas', 'email', 'miestas', 'uzklausa'];
 
   var form        = document.getElementById('contactForm');
   var submitBtn   = document.getElementById('submitBtn');
