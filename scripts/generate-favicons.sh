@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# TVORTEKA — favicon generator from assets/tvortekLogonoBg.png
+# TVORTEKA — favicon generator from assets/tvortekaIcon-dark.png
 # Requires: ImageMagick (brew install imagemagick)
 # Usage: ./scripts/generate-favicons.sh
 
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SRC="$ROOT/assets/tvortekLogonoBg.png"
+SRC="$ROOT/assets/tvortekaIcon-dark.png"
 TOKENS="$ROOT/css/tokens.css"
 TMPDIR="${TMPDIR:-/tmp}/tvorteka-favicon-$$"
 
@@ -39,7 +39,7 @@ trap 'rm -rf "$TMPDIR"' EXIT
 SQUARE="$TMPDIR/square.png"
 
 echo "TVORTEKA favicon generator"
-echo "  source:  assets/tvortekLogonoBg.png"
+echo "  source:  assets/tvortekaIcon-dark.png"
 echo "  theme:   $THEME_COLOR (--color-ink)"
 echo "  bg:      $BG_COLOR (--color-paper)"
 echo ""
