@@ -25,8 +25,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const DIST = join(ROOT, 'dist');
 
-const CSS_FILES = ['tokens', 'main', 'apie', 'kontaktai', 'skaiciuokle'];
-const JS_FILES = ['main', 'apie', 'kontaktai', 'skaiciuokle'];
+const CSS_FILES = ['tokens', 'main', 'apie', 'kontaktai', 'skaiciuokle', 'straipsniai'];
+const JS_FILES = ['main', 'apie', 'kontaktai', 'skaiciuokle', 'straipsniai'];
 
 const BIN = (name) => join(ROOT, 'node_modules', '.bin', name);
 

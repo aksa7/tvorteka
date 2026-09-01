@@ -337,6 +337,68 @@
   };
 
 
+  /* ---------- Homepage contact form ---------- */
+  const setupHomepageContactForm = () => {
+    const form = document.getElementById("homepageContactForm");
+    if (!form) return;
+
+    const btn = document.getElementById("homepageSubmitBtn");
+    const formFields = document.getElementById("homepageFormFields");
+    const formSuccess = document.getElementById("homepageFormSuccess");
+    const formNote = form.querySelector(".contact-form-note");
+    const defaultNote = formNote ? formNote.textContent : "";
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (btn) {
+        btn.disabled = true;
+        const label = btn.querySelector("span");
+        if (label) label.textContent = "Siunčiama…";
+      }
+      if (formNote) {
+        formNote.textContent = defaultNote;
+        formNote.style.color = "";
+      }
+
+      fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+      })
+        .then((res) => {
+          if (res.ok) {
+            if (formFields) formFields.style.display = "none";
+            if (btn) btn.style.display = "none";
+            if (formNote) formNote.style.display = "none";
+            if (formSuccess) formSuccess.style.display = "block";
+          } else {
+            if (btn) {
+              btn.disabled = false;
+              const label = btn.querySelector("span");
+              if (label) label.textContent = "Siųsti užklausą";
+            }
+            if (formNote) {
+              formNote.textContent = "Nepavyko išsiųsti užklausos. Bandykite dar kartą arba skambinkite +370 662 56657.";
+              formNote.style.color = "var(--color-ink)";
+            }
+          }
+        })
+        .catch(() => {
+          if (btn) {
+            btn.disabled = false;
+            const label = btn.querySelector("span");
+            if (label) label.textContent = "Siųsti užklausą";
+          }
+          if (formNote) {
+            formNote.textContent = "Nepavyko išsiųsti užklausos. Bandykite dar kartą arba skambinkite +370 662 56657.";
+            formNote.style.color = "var(--color-ink)";
+          }
+        });
+    });
+  };
+
+
   /* ---------- Init ---------- */
   const init = () => {
     setupMobileMenu();
@@ -348,6 +410,7 @@
     setupProductGallery();
     setupCatalogTabs();
     setupPartnersMarquee();
+    setupHomepageContactForm();
   };
 
   if (document.readyState === "loading") {

@@ -1,0 +1,222 @@
+/* ============================================================
+   TVORTEKA — /straipsniai/ page additions
+   Reuses main.css for: navbar, footer, buttons, reveals
+   ============================================================ */
+
+/* ---------- Hero ---------- */
+.straipsniai-hero {
+  padding: 9rem 0 5rem;
+  background: white;
+  text-align: center;
+}
+
+.straipsniai-hero-text {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.straipsniai-hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-ash-400);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 1.25rem auto 0;
+}
+
+/* ---------- Article grid (listing page) ---------- */
+.straipsniai-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 0 0 var(--section-y);
+}
+
+@media (max-width: 1024px) {
+  .straipsniai-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .straipsniai-grid { grid-template-columns: 1fr; }
+}
+
+.straipsnis-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid var(--color-ash-50);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+}
+
+.straipsnis-card:hover {
+  box-shadow: 0 12px 40px rgba(14, 14, 12, 0.08);
+  transform: translateY(-2px);
+}
+
+.straipsnis-card-image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-paper-2);
+}
+
+.straipsnis-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-quart);
+}
+
+.straipsnis-card:hover .straipsnis-card-image img {
+  transform: scale(1.04);
+}
+
+.straipsnis-card-image--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-paper-2) 0%, var(--color-ash-50) 100%);
+}
+
+.straipsnis-card-image--placeholder svg {
+  opacity: 0.25;
+}
+
+.straipsnis-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.75rem;
+  padding: 1.5rem;
+}
+
+.straipsnis-card-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.straipsnis-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.straipsnis-card-title a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.straipsnis-card-excerpt {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-ash-400);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.straipsnis-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+.straipsnis-card-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Long-form article ---------- */
+.straipsnis-article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 0 var(--section-y);
+  font-family: var(--font-sans);
+  color: var(--color-ink-soft);
+}
+
+.straipsnis-article h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin-bottom: 1.5rem;
+}
+
+.straipsnis-article h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 2.5rem 0 1rem;
+}
+
+.straipsnis-article h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin: 2rem 0 0.75rem;
+}
+
+.straipsnis-article p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.straipsnis-article ul,
+.straipsnis-article ol {
+  margin: 0 0 1.25rem 1.25rem;
+  line-height: 1.7;
+}
+
+.straipsnis-article li {
+  margin-bottom: 0.5rem;
+}
+
+.straipsnis-article ul li {
+  list-style: disc;
+}
+
+.straipsnis-article ol li {
+  list-style: decimal;
+}
+
+.straipsnis-article a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.straipsnis-article a:hover {
+  color: var(--color-ash-600);
+}
+
+.straipsnis-article img {
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.straipsnis-article blockquote {
+  border-left: 3px solid var(--color-ash-50);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  color: var(--color-ash-400);
+  font-style: italic;
+}

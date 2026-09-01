@@ -110,6 +110,7 @@
           <li role="none"><a href="/skaiciuokle/" class="navbar-pill-link" role="menuitem">Skaičiuoklė</a></li>
           <li role="none"><a href="/veikla/" class="navbar-pill-link" role="menuitem">Veikla</a></li>
           <li role="none"><a href="/apie/" class="navbar-pill-link" role="menuitem">Apie mus</a></li>
+          <li role="none"><a href="/straipsniai/" class="navbar-pill-link" role="menuitem">Straipsniai</a></li>
           <li role="none"><a href="/kontaktai/" class="navbar-pill-link is-active" role="menuitem">Kontaktai</a></li>
         </ul>
 
@@ -146,6 +147,7 @@
       <li><a href="/skaiciuokle/">Skaičiuoklė</a></li>
       <li><a href="/veikla/">Veikla</a></li>
       <li><a href="/apie/">Apie mus</a></li>
+      <li><a href="/straipsniai/">Straipsniai</a></li>
       <li><a href="/kontaktai/">Kontaktai</a></li>
     </ul>
     <div class="navbar-mobile-foot">
@@ -170,8 +172,9 @@
   <!-- FORM -->
   <section class="kontaktai-form" id="forma">
     <div class="container-x">
-      <form class="contact-form reveal-scroll" id="contactForm" method="POST" action="https://formspree.io/f/xzdowagr" style="max-width: 820px; margin: 0 auto;">
+      <form class="contact-form reveal-scroll" id="contactForm" method="POST" action="/api/send" style="max-width: 820px; margin: 0 auto;">
         <input type="hidden" name="_subject" value="Užklausa - Tvorteka" />
+        <input type="hidden" name="formType" value="kontaktai" />
 
         <div id="formFields">
           <div class="contact-form-row">
@@ -308,6 +311,7 @@
             <li><a href="/">Pradžia</a></li>
             <li><a href="/produktai/">Produktai</a></li>
             <li><a href="/apie/">Apie mus</a></li>
+            <li><a href="/straipsniai/">Straipsniai</a></li>
             <li><a href="/kontaktai/">Kontaktai</a></li>
           </ul>
         </div>

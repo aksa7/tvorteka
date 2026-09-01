@@ -7,8 +7,8 @@
     "build": "node scripts/build-script.mjs",
     "dev": "python3 -m http.server 5500",
     "check": "node scripts/check-script.mjs",
-    "build:css": "lightningcss --minify css/tokens.css -o css/tokens.min.css && lightningcss --minify css/main.css -o css/main.min.css && lightningcss --minify css/skaiciuokle.css -o css/skaiciuokle.min.css && lightningcss --minify css/kontaktai.css -o css/kontaktai.min.css && lightningcss --minify css/apie.css -o css/apie.min.css",
-    "build:js": "terser js/main.js -o js/main.min.js -c -m && terser js/kontaktai.js -o js/kontaktai.min.js -c -m && terser js/apie.js -o js/apie.min.js -c -m && terser js/skaiciuokle.js -o js/skaiciuokle.min.js -c -m"
+    "build:css": "lightningcss --minify css/tokens.css -o css/tokens.min.css && lightningcss --minify css/main.css -o css/main.min.css && lightningcss --minify css/skaiciuokle.css -o css/skaiciuokle.min.css && lightningcss --minify css/kontaktai.css -o css/kontaktai.min.css && lightningcss --minify css/apie.css -o css/apie.min.css && lightningcss --minify css/straipsniai.css -o css/straipsniai.min.css",
+    "build:js": "terser js/main.js -o js/main.min.js -c -m && terser js/kontaktai.js -o js/kontaktai.min.js -c -m && terser js/apie.js -o js/apie.min.js -c -m && terser js/skaiciuokle.js -o js/skaiciuokle.min.js -c -m && terser js/straipsniai.js -o js/straipsniai.min.js -c -m"
   },
   "devDependencies": {
     "@fontsource-variable/inter": "^5.2.8",

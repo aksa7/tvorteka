@@ -1,4 +1,4 @@
-/* kontaktai.js - form validation & Formspree AJAX submission */
+/* kontaktai.js - form validation & /api/send AJAX submission */
 
 (function () {
   'use strict';
@@ -36,10 +36,10 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Siunčiama…';
 
-    fetch(form.action, {
+    fetch('/api/send', {
       method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
     }).then(function (res) {
       if (res.ok) {
         if (formFields)  formFields.style.display  = 'none';

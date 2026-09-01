@@ -6,10 +6,6 @@
   'use strict';
 
   /* ---------- Konfigūracija ---------- */
-  // ĮRAŠYKITE SAVO FORMSPREE ID ČIA (pvz.: 'xnqkvpzy')
-  // Kol paliksite 'YOUR_FORMSPREE_ID' - forma naudos mailto: fallback
-  const FORMSPREE_ID = 'xzdowagr';
-  const RECIPIENT_EMAIL = 'info@tvorteka.lt';
 
   /* ---------- Duomenys ---------- */
 
@@ -580,19 +576,11 @@
     const subject = `Skaičiuoklės užklausa - ${state.vardas || ''}`.trim();
     const body = buildEmailBody();
 
-    // Jei Formspree ID dar nepakeistas - naudojame mailto: fallback
-    if (!FORMSPREE_ID || FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
-      window.location.href = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      showSuccess();
-      return;
-    }
-
-    // Formspree siuntimas
     const formData = {
+      formType: 'skaiciuokle',
       email: state.email,
       _subject: subject,
       message: body,
-      _replyto: state.email,
       _gotcha: '',
       vardas: state.vardas || '',
       pavarde: state.pavarde || '',
@@ -601,11 +589,10 @@
       zinute: state.zinute || ''
     };
 
-    fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+    fetch('/api/send', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(formData)
     })

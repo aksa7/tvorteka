@@ -10,7 +10,6 @@ cd "$ROOT"
 
 PORT="${PREFLIGHT_PORT:-5500}"
 BASE="http://127.0.0.1:${PORT}"
-FORMSPREE_CANONICAL="https://formspree.io/f/xzdowagr"
 WEBP_WARN_BYTES=$((300 * 1024))
 
 FAILS=0
@@ -364,35 +363,24 @@ check_html_meta() {
   fi
 }
 
-# ── [9] Formspree URL consistency ──
-check_formspree() {
-  section "Formspree URL consistency"
+# ── [9] No leftover Formspree references ──
+check_no_formspree() {
+  section "No Formspree references in forms"
 
-  local found=() mismatches=0
+  local matches
+  matches=$(grep -ri 'formspree' \
+    "$ROOT/index.html" \
+    "$ROOT/kontaktai/index.html" \
+    "$ROOT/js" \
+    2>/dev/null || true)
 
-  while IFS= read -r match; do
-    [[ -z "$match" ]] && continue
-    found+=("$match")
-    if [[ "$match" != "$FORMSPREE_CANONICAL" && "$match" != *"/f/xzdowagr" ]]; then
-      fail "Unexpected Formspree URL: $match"
-      mismatches=$((mismatches + 1))
-    fi
-  done < <(
-    grep -rohE 'https://formspree\.io/f/[A-Za-z0-9]+' \
-      index.html kontaktai/index.html js/skaiciuokle.js 2>/dev/null | sort -u
-  )
-
-  # JS uses template string — verify ID constant
-  if ! grep -q "FORMSPREE_ID = 'xzdowagr'" "$ROOT/js/skaiciuokle.js" 2>/dev/null; then
-    fail "js/skaiciuokle.js — FORMSPREE_ID is not 'xzdowagr'"
-    mismatches=$((mismatches + 1))
-  fi
-
-  if [[ ${#found[@]} -eq 0 ]]; then
-    fail "No Formspree URLs found in forms"
-    mismatches=$((mismatches + 1))
-  elif (( mismatches == 0 )); then
-    pass "All forms use $FORMSPREE_CANONICAL (${#found[@]} source(s))"
+  if [[ -n "$matches" ]]; then
+    fail "Rastas liekantis Formspree kodas:"
+    while IFS= read -r line; do
+      echo "         $line"
+    done <<< "$matches"
+  else
+    pass "No Formspree references in index.html, kontaktai/index.html, js/*.js"
   fi
 }
 
@@ -409,7 +397,7 @@ main() {
   check_webp_size
   check_cloudflare_config
   check_html_meta
-  check_formspree
+  check_no_formspree
 
   echo ""
   echo -e "${C_BOLD}Summary${C_RESET}"

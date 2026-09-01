@@ -8,3 +8,5 @@ node_modules/
 assets/_originals/
 .DS_Store
 .vscode/
+.dev.vars.wrangler/
+.dev.vars

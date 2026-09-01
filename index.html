@@ -309,6 +309,7 @@
           <li role="none"><a href="/skaiciuokle/" class="navbar-pill-link" role="menuitem">Skaičiuoklė</a></li>
           <li role="none"><a href="/veikla/" class="navbar-pill-link" role="menuitem">Veikla</a></li>
           <li role="none"><a href="/apie/" class="navbar-pill-link" role="menuitem">Apie mus</a></li>
+          <li role="none"><a href="/straipsniai/" class="navbar-pill-link" role="menuitem">Straipsniai</a></li>
           <li role="none"><a href="/kontaktai/" class="navbar-pill-link" role="menuitem">Kontaktai</a></li>
         </ul>
 
@@ -348,6 +349,7 @@
       <li><a href="/skaiciuokle/">Skaičiuoklė</a></li>
       <li><a href="/veikla/">Veikla</a></li>
       <li><a href="/apie/">Apie mus</a></li>
+      <li><a href="/straipsniai/">Straipsniai</a></li>
       <li><a href="/kontaktai/">Kontaktai</a></li>
     </ul>
     <div class="navbar-mobile-foot">
@@ -1033,8 +1035,9 @@
             </div>
           </div>
 
-          <form class="contact-form" id="homepageContactForm" method="POST" action="https://formspree.io/f/xzdowagr">
+          <form class="contact-form" id="homepageContactForm" method="POST" action="/api/send">
             <input type="hidden" name="_subject" value="Užklausa - Tvorteka" />
+            <input type="hidden" name="formType" value="homepage" />
 
             <h3 class="contact-form-title">Užklausos forma</h3>
 
@@ -1119,6 +1122,7 @@
           <ul class="footer-col-list">
             <li><a href="#apie">Apie mus</a></li>
             <li><a href="#veikla">Veikla</a></li>
+            <li><a href="/straipsniai/">Straipsniai</a></li>
             <li><a href="#kontaktai">Kontaktai</a></li>
           </ul>
         </div>
@@ -1140,33 +1144,5 @@
   </footer>
 
   <script src="js/main.js" defer></script>
-  <script>
-  (function () {
-    'use strict';
-    var form = document.getElementById('homepageContactForm');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var btn = document.getElementById('homepageSubmitBtn');
-      if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Siunčiama…'; }
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(function (res) {
-        if (res.ok) {
-          document.getElementById('homepageFormFields').style.display = 'none';
-          if (btn) btn.style.display = 'none';
-          document.querySelector('.contact-form-note').style.display = 'none';
-          document.getElementById('homepageFormSuccess').style.display = 'block';
-        } else {
-          if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Siųsti užklausą'; }
-        }
-      }).catch(function () {
-        if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Siųsti užklausą'; }
-      });
-    });
-  }());
-  </script>
 </body>
 </html>
