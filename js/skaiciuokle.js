@@ -574,19 +574,18 @@
     if (!canProceed()) return;
 
     const subject = `Skaičiuoklės užklausa - ${state.vardas || ''}`.trim();
-    const body = buildEmailBody();
 
     const formData = {
       formType: 'skaiciuokle',
       email: state.email,
       _subject: subject,
-      message: body,
       _gotcha: '',
       vardas: state.vardas || '',
       pavarde: state.pavarde || '',
       telefonas: state.telefonas || '',
       miestas: state.miestas || '',
-      zinute: state.zinute || ''
+      zinute: state.zinute || '',
+      configItems: getSummary()
     };
 
     fetch('/api/send', {

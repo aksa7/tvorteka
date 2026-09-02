@@ -20,10 +20,25 @@ export default {
         const formType = data.formType || 'kontaktai';
         const replyTo = data.email || undefined;
 
-        const rows = Object.entries(data)
-          .filter(([k]) => !['formType', '_gotcha', '_subject'].includes(k))
-          .map(([k, v]) => `<tr><td style="padding:4px 12px;color:#666;">${k}</td><td style="padding:4px 12px;"><b>${String(v)}</b></td></tr>`)
+        const contactFieldLabels = { vardas: 'Vardas', pavarde: 'Pavardė', telefonas: 'Telefonas', email: 'El. paštas', miestas: 'Miestas', zinute: 'Žinutė' };
+        const contactRows = Object.entries(contactFieldLabels)
+          .filter(([key]) => data[key])
+          .map(([key, label]) => `<tr><td style="padding:6px 12px;color:#666;border-bottom:1px solid #eee;">${label}</td><td style="padding:6px 12px;border-bottom:1px solid #eee;"><strong>${String(data[key])}</strong></td></tr>`)
           .join('');
+
+        const configItems = Array.isArray(data.configItems) ? data.configItems : [];
+        const configRows = configItems
+          .map(it => `<tr><td style="padding:6px 12px;color:#666;border-bottom:1px solid #eee;">${it.label}</td><td style="padding:6px 12px;border-bottom:1px solid #eee;"><strong>${it.value}</strong></td></tr>`)
+          .join('');
+
+        const formTypeLabel = formType === 'skaiciuokle' ? 'Skaičiuoklė' : formType === 'kontaktai' ? 'Kontaktai' : 'Pagrindinis puslapis';
+
+        const html = `<div style="font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin:0 auto;">
+     <h2 style="margin-bottom:4px;">Nauja užklausa - ${formTypeLabel}</h2>
+     <h3 style="margin-top:24px; margin-bottom:8px; font-size:14px; text-transform:uppercase; color:#888;">Kontaktiniai duomenys</h3>
+     <table style="width:100%; border-collapse:collapse;">${contactRows}</table>
+     ${configRows ? `<h3 style="margin-top:24px; margin-bottom:8px; font-size:14px; text-transform:uppercase; color:#888;">Tvoros konfigūracija</h3><table style="width:100%; border-collapse:collapse;">${configRows}</table>` : ''}
+   </div>`;
 
         const subject = data._subject || `Nauja užklausa (${formType}) - Tvorteka svetainė`;
 
@@ -38,7 +53,7 @@ export default {
             to: ['info@tvorteka.lt'],
             reply_to: replyTo,
             subject,
-            html: `<table>${rows}</table>`
+            html
           })
         });
 
